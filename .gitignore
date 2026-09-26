@@ -1,0 +1,6 @@
+# Windows Zone.Identifier metadata (added automatically to files downloaded via WSL)
+*:Zone.Identifier
+
+# OS junk files
+.DS_Store
+Thumbs.db

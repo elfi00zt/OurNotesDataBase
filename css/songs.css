@@ -1,0 +1,512 @@
+/* =========================================================
+   OurNotes DataBase - songs.css
+
+   楽曲一覧・楽曲詳細ページ専用のスタイル。
+   ページ見出し・戻るリンク・画像表示エリア・一覧カードの土台・
+   詳細ページの2カラムレイアウト・エラーメッセージなど、
+   バンド／キャラクターページと共通の部分は characters.css を
+   そのまま利用し、ここでは楽曲固有のスタイルのみを定義する。
+
+   構成：
+   0. 楽曲固有のカラー変数
+   1. 検索・フィルター・ソートエリア
+   2. 件数表示
+   3. 楽曲一覧カード
+   4. タイプ・難易度バッジ（一覧・詳細で共通）
+   5. 楽曲詳細
+   6. 難易度テーブル
+   7. 音源・譜面動画エリア
+   8. レスポンシブ対応
+   ========================================================= */
+
+/* ---------- 0. 楽曲固有のカラー変数 ---------- */
+:root {
+  --diff-easy: #22c55e;
+  --diff-normal: var(--color-primary);
+  --diff-hard: #f59e0b;
+  --diff-expert: #ef4444;
+}
+
+/* ---------- 1. 検索・フィルター・ソートエリア ---------- */
+.song-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.song-search-input {
+  width: 100%;
+  padding: 14px 18px;
+  font-size: 1rem;
+  color: var(--color-text-main);
+  background-color: var(--color-card-background);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-button);
+  box-shadow: var(--shadow-card);
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.song-search-input:focus {
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-card-hover);
+}
+
+.song-filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.song-select {
+  padding: 10px 14px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--color-text-main);
+  background-color: var(--color-card-background);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-button);
+  box-shadow: var(--shadow-card);
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+}
+
+.song-select:focus {
+  border-color: var(--color-primary);
+  outline: none;
+}
+
+/* タイプフィルター：プルダウンの左に、選択中タイプのアイコンをプレビュー表示する */
+.type-filter-group {
+  display: flex;
+  /* stretchにして中のselectを他のプルダウンと同じ高さまで伸ばす */
+  align-items: stretch;
+  gap: 8px;
+}
+
+.type-filter-preview-icon {
+  align-self: center;
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+}
+
+.type-filter-preview-icon[hidden] {
+  display: none;
+}
+
+/* 難易度フィルター：数値入力＋左右の-/+ボタン */
+.difficulty-stepper {
+  display: flex;
+  align-items: stretch;
+  background-color: var(--color-card-background);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-button);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+  transition: border-color 0.2s ease;
+}
+
+.difficulty-stepper:focus-within {
+  border-color: var(--color-primary);
+}
+
+.stepper-button {
+  padding: 0 14px;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  background-color: var(--color-background);
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.stepper-button:hover {
+  background-color: var(--color-primary);
+  color: var(--color-text-on-primary);
+}
+
+.difficulty-filter-input {
+  width: 120px;
+  padding: 10px 8px;
+  text-align: center;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--color-text-main);
+  background-color: transparent;
+  border: none;
+  outline: none;
+  /* +/-ボタンで統一するため、ブラウザ標準のスピナーは非表示にする */
+  -moz-appearance: textfield;
+}
+
+.difficulty-filter-input::-webkit-outer-spin-button,
+.difficulty-filter-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* 検索・フィルター・ソートをまとめて初期状態に戻すボタン */
+.song-reset-button {
+  padding: 10px 16px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  background-color: var(--color-card-background);
+  border: 1px solid var(--color-primary);
+  border-radius: var(--radius-button);
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.15s ease;
+}
+
+.song-reset-button:hover {
+  color: var(--color-text-on-primary);
+  background-color: var(--color-primary);
+  transform: translateY(-1px);
+}
+
+/* ---------- 2. 件数表示 ---------- */
+.song-result-count {
+  margin: 0 0 20px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--color-text-sub);
+}
+
+/* ---------- 3. 楽曲一覧カード ---------- */
+.song-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+/* 楽曲のジャケット画像は正方形に近い比率で表示する */
+.song-card .card-thumb {
+  aspect-ratio: 1 / 1;
+}
+
+.song-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.song-card-title-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* 一覧カードは幅が限られるため、詳細ページより小さいサイズで表示する */
+.song-card-title-row .song-type-icon {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+}
+
+.song-card-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-text-main);
+  line-height: 1.4;
+}
+
+.song-card-band {
+  font-size: 0.85rem;
+  color: var(--color-text-sub);
+}
+
+/* バンド名の代わりに表示する、小さなバンドロゴ */
+.band-logo {
+  display: inline-flex;
+  align-items: center;
+  height: 34px;
+}
+
+.band-logo img {
+  display: block;
+  height: 100%;
+  width: auto;
+  max-width: 220px;
+  object-fit: contain;
+}
+
+/* ロゴ画像の読み込みに失敗した場合だけ表示する、バンド名のテキスト */
+.band-logo-fallback-text {
+  display: none;
+  font-size: 0.85rem;
+  color: var(--color-text-sub);
+}
+
+.band-logo-fallback-text.is-visible {
+  display: inline;
+}
+
+.song-card-footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 2px;
+}
+
+/* ---------- 4. タグ・難易度バッジ（一覧・詳細で共通） ---------- */
+/* タグは1曲に複数付く場合があるため、並んだときに折り返せるようにしておく */
+.song-tag-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.tag-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  width: fit-content;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-text-on-primary);
+  background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+  border-radius: 999px;
+  padding: 3px 10px;
+}
+
+/* 楽曲詳細ページ：曲名の左に表示する、推奨タイプのアイコン */
+.song-type-icon {
+  display: inline-block;
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  vertical-align: middle;
+}
+
+/* タイトル行はベースライン基準だと画像が浮いて見えるため、
+   楽曲詳細では中心をそろえる（タグ・アイコン・曲名の高さの中心を水平にそろえる） */
+.song-detail-card .detail-heading {
+  align-items: center;
+}
+
+.song-diff-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.diff-badge {
+  display: inline-block;
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  padding: 3px 9px;
+  border-radius: 999px;
+  color: var(--color-text-on-primary);
+}
+
+.diff-badge.diff-easy {
+  background-color: var(--diff-easy);
+}
+
+.diff-badge.diff-normal {
+  background-color: var(--diff-normal);
+}
+
+.diff-badge.diff-hard {
+  background-color: var(--diff-hard);
+}
+
+.diff-badge.diff-expert {
+  background-color: var(--diff-expert);
+}
+
+/* ---------- 5. 楽曲詳細 ---------- */
+/* 楽曲ジャケットはキャラクター画像より小さめ・正方形に近い比率で表示する */
+.song-detail-card .card-thumb {
+  width: 320px;
+  aspect-ratio: 1 / 1;
+}
+
+/* .content-sectionの上下48pxは他ページ共通のため変更せず、
+   楽曲詳細ページ内のセクションだけ余白を詰めてPC画面に収まりやすくする */
+#songDetailArea .content-section {
+  padding: 20px 0;
+}
+
+/* 「ラベル＋値」を、罫線だけの単調な並びではなく、
+   台紙付きの表として組み直す（HTML構造はキャラクター詳細と共通のまま、
+   ここではCSSのdisplay:contentsで見た目だけ変える）。
+   バンド〜実装日の7項目を、1行に2組ずつ（ラベル・値×2）並べて行数を減らす。 */
+.song-detail-facts {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto minmax(0, 1fr);
+  margin-top: 16px;
+  background-color: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+}
+
+.song-detail-facts .info-row {
+  display: contents;
+}
+
+.song-detail-facts .info-label,
+.song-detail-facts .info-value {
+  padding: 10px 16px;
+  background-color: var(--color-card-background);
+  border-bottom: 1px solid var(--color-border);
+  overflow-wrap: break-word;
+}
+
+.song-detail-facts .info-label {
+  width: auto;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--color-primary);
+  background-color: var(--color-background);
+}
+
+.song-detail-facts .info-value {
+  font-weight: 700;
+  color: var(--color-text-main);
+}
+
+.song-detail-facts .info-row:last-child .info-label,
+.song-detail-facts .info-row:last-child .info-value {
+  border-bottom: none;
+}
+
+/* ---------- 6. 難易度テーブル ---------- */
+.difficulty-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: var(--color-card-background);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+}
+
+.difficulty-table th,
+.difficulty-table td {
+  padding: 14px 16px;
+  text-align: left;
+  font-size: 0.9rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* レベル・ノーツ数の見た目を、基本情報欄の.info-valueと揃える */
+.difficulty-table .info-value {
+  font-weight: 700;
+  color: var(--color-text-main);
+}
+
+.difficulty-table tr:last-child td {
+  border-bottom: none;
+}
+
+.difficulty-table th {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--color-text-sub);
+  background-color: var(--color-background);
+}
+
+.difficulty-name {
+  padding-left: 12px;
+  font-weight: 800;
+  border-left: 4px solid currentColor;
+}
+
+.difficulty-name.diff-easy { color: var(--diff-easy); }
+.difficulty-name.diff-normal { color: var(--diff-normal); }
+.difficulty-name.diff-hard { color: var(--diff-hard); }
+.difficulty-name.diff-expert { color: var(--diff-expert); }
+
+/* ---------- 7. 音源・譜面動画エリア ---------- */
+.song-media-block {
+  background-color: var(--color-card-background);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  padding: 20px;
+  box-shadow: var(--shadow-card);
+}
+
+.song-video-frame-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: var(--color-background);
+}
+
+.song-video-frame-wrapper iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.song-media-placeholder {
+  padding: 28px;
+  text-align: center;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-text-sub);
+  background-color: var(--color-background);
+  border: 1px dashed var(--color-border);
+  border-radius: 12px;
+}
+
+/* ---------- 8. レスポンシブ対応 ---------- */
+
+/* タブレット：楽曲カードを2列に */
+@media (max-width: 900px) {
+  .song-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* サムネイル(320px)と並ぶ幅が狭くなるため、1行1組に戻す */
+  .song-detail-facts {
+    grid-template-columns: auto 1fr;
+  }
+}
+
+/* スマートフォン：楽曲カード1列、検索・フィルターを縦積みにする */
+@media (max-width: 640px) {
+  .song-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .song-filter-row {
+    flex-direction: column;
+  }
+
+  .song-select {
+    width: 100%;
+  }
+
+  .difficulty-stepper {
+    width: 100%;
+  }
+
+  .difficulty-filter-input {
+    flex: 1;
+    width: auto;
+  }
+
+  /* 幅・中央寄せはcharacters.cssの .detail-card .card-thumb が担当し、
+     ここでは正方形比率(1:1)だけを維持する */
+
+  /* スマートフォンでは横幅が足りないため、1行1組（ラベル・値）に戻す */
+  .song-detail-facts {
+    grid-template-columns: auto 1fr;
+  }
+
+  .difficulty-table th,
+  .difficulty-table td {
+    padding: 10px 8px;
+    font-size: 0.8rem;
+  }
+}

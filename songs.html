@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>楽曲 | OurNotes DataBase</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/characters.css">
+<link rel="stylesheet" href="css/songs.css">
+</head>
+<body class="character-pages compact-page-header">
+
+  <!-- ヘッダー：サイトロゴとナビゲーションメニュー -->
+  <header class="site-header">
+    <div class="header-inner">
+      <p class="site-logo">OurNotes DataBase</p>
+
+      <!-- スマートフォン用のメニュー開閉ボタン -->
+      <button id="menuToggleButton" class="menu-toggle-button" aria-label="メニューを開く" aria-expanded="false">
+        <span class="menu-icon-bar"></span>
+        <span class="menu-icon-bar"></span>
+        <span class="menu-icon-bar"></span>
+      </button>
+
+      <nav id="mainNavigation" class="main-navigation">
+        <ul class="nav-list">
+          <li><a href="index.html" class="nav-link">ホーム</a></li>
+          <li><a href="bands.html" class="nav-link">キャラクター</a></li>
+          <li><a href="#" class="nav-link" data-page-name="カード">カード</a></li>
+          <li><a href="songs.html" class="nav-link">楽曲</a></li>
+          <li><a href="events.html" class="nav-link">イベント</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="page-container">
+
+      <!-- ページ見出し -->
+      <section class="page-header fade-in-section">
+        <h1 class="page-header-title">楽曲</h1>
+        <p class="page-header-caption">楽曲を検索・絞り込みできます</p>
+      </section>
+
+      <!-- 検索・フィルター・ソート -->
+      <section class="content-section fade-in-section">
+        <div class="song-controls">
+          <input
+            type="text"
+            id="songSearchInput"
+            class="song-search-input"
+            placeholder="楽曲名を検索..."
+          >
+
+          <div class="song-filter-row">
+            <!-- 閉じた状態でも何のフィルターか分かるよう、選択肢の先頭に項目名を付けている -->
+            <select id="tagFilterSelect" class="song-select">
+              <option value="">楽曲種別：すべて</option>
+              <option value="オリジナル">楽曲種別：オリジナル</option>
+              <option value="カバー">楽曲種別：カバー</option>
+            </select>
+
+            <!-- 標準のプルダウンには画像を入れられないため、選択中のタイプのアイコンだけを横に添えて表示する -->
+            <div class="type-filter-group">
+              <img id="typeFilterPreviewIcon" class="type-filter-preview-icon" src="" alt="" hidden>
+              <select id="typeFilterSelect" class="song-select">
+                <option value="">タイプ：すべて</option>
+                <option value="紅赤">タイプ：紅赤</option>
+                <option value="紺碧">タイプ：紺碧</option>
+                <option value="翡翠">タイプ：翡翠</option>
+                <option value="山吹">タイプ：山吹</option>
+                <option value="紫苑">タイプ：紫苑</option>
+              </select>
+            </div>
+
+            <!-- 難易度は数値入力＋左右の-/+ボタンで指定する。未入力の場合は「すべて」扱いになる -->
+            <div class="difficulty-stepper">
+              <button type="button" id="difficultyDecreaseButton" class="stepper-button" aria-label="難易度を1下げる">−</button>
+              <input
+                type="number"
+                id="difficultyFilterInput"
+                class="difficulty-filter-input"
+                placeholder="難易度：すべて"
+                min="0"
+                inputmode="numeric"
+              >
+              <button type="button" id="difficultyIncreaseButton" class="stepper-button" aria-label="難易度を1上げる">＋</button>
+            </div>
+
+            <select id="bandFilterSelect" class="song-select">
+              <!-- JavaScriptがここに「バンド：すべて」＋バンドの選択肢を生成します -->
+            </select>
+
+            <select id="songSortSelect" class="song-select">
+              <option value="release-desc">並び替え：実装日が新しい順</option>
+              <option value="release-asc">並び替え：実装日が古い順</option>
+              <option value="ex-desc">並び替え：EX難易度が高い順</option>
+              <option value="ex-asc">並び替え：EX難易度が低い順</option>
+              <option value="band-asc">並び替え：バンド順</option>
+              <option value="band-desc">並び替え：バンド順（逆）</option>
+            </select>
+
+            <button type="button" id="songFilterResetButton" class="song-reset-button">条件をリセット</button>
+          </div>
+        </div>
+
+        <p id="songResultCount" class="song-result-count"></p>
+
+        <div id="songList" class="song-grid">
+          <!-- JavaScriptがここに楽曲カードを生成します -->
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- フッター -->
+  <footer class="site-footer">
+    <p>非公式のファンサイトです。画像・データの権利は各権利者に帰属します。&copy;BanG Dream! Project &copy;FROMTOKYO &copy;Bushiroad</p>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/songs.js"></script>
+</body>
+</html>

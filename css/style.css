@@ -1,0 +1,487 @@
+/* =========================================================
+   OurNotes DataBase - スタイルシート
+   構成：
+   1. 共通変数（カラー・余白など）
+   2. 全体のリセット・基本設定
+   3. ヘッダー・ナビゲーション
+   4. メインビジュアル・検索ボックス
+   5. コンテンツ共通（セクション・見出し）
+   6. お知らせ・更新履歴
+   7. データベースカード
+   8. 運営者情報
+   9. フッター
+   10. アニメーション
+   11. レスポンシブ対応
+   ========================================================= */
+
+/* ---------- 1. 共通変数 ---------- */
+:root {
+  /* メインカラー（青〜紫のグラデーション系） */
+  --color-primary: #4f6df5;
+  --color-primary-dark: #3b4fd6;
+  --color-accent: #8b5cf6;
+  --color-accent-light: #a78bfa;
+
+  /* 背景・カード */
+  --color-background: #f5f6fd;
+  --color-card-background: #ffffff;
+
+  /* 文字色 */
+  --color-text-main: #1f2233;
+  --color-text-sub: #6b7086;
+  --color-text-on-primary: #ffffff;
+
+  /* ボーダー・影 */
+  --color-border: #e4e6f5;
+  --shadow-card: 0 4px 12px rgba(79, 109, 245, 0.08);
+  --shadow-card-hover: 0 10px 24px rgba(79, 109, 245, 0.16);
+
+  /* サイズ・間隔 */
+  --content-max-width: 1600px;
+  --radius-card: 16px;
+  --radius-button: 10px;
+}
+
+/* ---------- 2. 全体のリセット・基本設定 ---------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif;
+  background-color: var(--color-background);
+  color: var(--color-text-main);
+  line-height: 1.7;
+  overflow-x: hidden; /* 横スクロールを防止 */
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+}
+
+/* サイト内すべての画像で、長押し保存・ドラッグ保存を防ぐ（右クリック無効化はJS側で行う） */
+img {
+  -webkit-touch-callout: none; /* iOS Safariの長押しメニュー（画像を保存 等）を防ぐ */
+  -webkit-user-drag: none; /* Safari等でのドラッグによる保存を防ぐ */
+  user-select: none; /* 画像自体が選択状態になるのを防ぐ */
+}
+
+.page-container {
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ---------- 3. ヘッダー・ナビゲーション ---------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.header-inner {
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.site-logo {
+  font-size: 1.3rem;
+  font-weight: 700;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* タブ全体を、薄い背景の「ピル」で軽く囲んで一体感を出す */
+.nav-list {
+  display: flex;
+  gap: 4px;
+  padding: 4px;
+  background-color: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+}
+
+.nav-link {
+  display: inline-block;
+  padding: 8px 18px;
+  border-radius: 999px;
+  font-size: 0.92rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--color-text-sub);
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+}
+
+.nav-link:hover {
+  background-color: var(--color-card-background);
+  color: var(--color-primary);
+  transform: translateY(-1px);
+}
+
+/* 現在表示しているページのタブ（JavaScriptが自動でis-activeを付与する） */
+.nav-link.is-active {
+  color: var(--color-text-on-primary);
+  background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+  box-shadow: var(--shadow-card);
+}
+
+.nav-link.is-active:hover {
+  color: var(--color-text-on-primary);
+  transform: none;
+}
+
+/* スマートフォン用のメニュー開閉ボタン（PCでは非表示） */
+.menu-toggle-button {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  background: transparent;
+}
+
+.menu-icon-bar {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background-color: var(--color-text-main);
+  border-radius: 2px;
+  transition: transform 0.2s ease;
+}
+
+/* ---------- 4. メインビジュアル・検索ボックス ---------- */
+.hero-section {
+  padding: 64px 24px 24px;
+  text-align: center;
+  background: linear-gradient(180deg, #eef1ff 0%, var(--color-background) 100%);
+}
+
+.hero-content {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.hero-title {
+  font-size: 2.4rem;
+  font-weight: 800;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-bottom: 16px;
+}
+
+.hero-description {
+  font-size: 1rem;
+  color: var(--color-text-sub);
+  margin-bottom: 32px;
+}
+
+/* ---------- 5. コンテンツ共通（セクション・見出し） ---------- */
+.content-section {
+  padding: 48px 0 24px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.content-section:last-of-type {
+  border-bottom: none;
+}
+
+.section-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 24px;
+  color: var(--color-text-main);
+}
+
+/* ---------- 6. お知らせ・更新履歴 ---------- */
+/* お知らせ：ユーザーに直接伝えるための、目立つカード形式 */
+.news-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.news-item {
+  display: flex;
+  gap: 16px;
+  align-items: baseline;
+  background-color: var(--color-card-background);
+  border: 1px solid var(--color-border);
+  border-left: 4px solid var(--color-primary);
+  border-radius: var(--radius-card);
+  padding: 16px 20px;
+  box-shadow: var(--shadow-card);
+}
+
+.news-item.is-important {
+  border-left-color: var(--color-accent);
+  background-color: #f8f6ff;
+}
+
+.news-date {
+  flex-shrink: 0;
+  font-size: 0.85rem;
+  color: var(--color-text-sub);
+  min-width: 96px;
+}
+
+.news-title {
+  flex: 1;
+  font-size: 0.95rem;
+}
+
+.important-label {
+  display: inline-block;
+  margin-right: 8px;
+  padding: 2px 8px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--color-text-on-primary);
+  background-color: var(--color-accent);
+  border-radius: 999px;
+  vertical-align: middle;
+}
+
+/* 更新履歴：お知らせより控えめな、シンプルなリスト形式 */
+.update-log-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  background-color: var(--color-card-background);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  padding: 8px 20px;
+  box-shadow: var(--shadow-card);
+}
+
+.update-log-item {
+  display: flex;
+  gap: 16px;
+  padding: 12px 0;
+  border-bottom: 1px dashed var(--color-border);
+  font-size: 0.9rem;
+  color: var(--color-text-sub);
+}
+
+.update-log-item:last-child {
+  border-bottom: none;
+}
+
+.update-log-date {
+  flex-shrink: 0;
+  min-width: 96px;
+  color: var(--color-text-sub);
+}
+
+.update-log-content {
+  color: var(--color-text-main);
+}
+
+/* ---------- 7. データベースカード ---------- */
+.database-card-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.database-card {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background-color: var(--color-card-background);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  padding: 24px 20px;
+  box-shadow: var(--shadow-card);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.database-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card-hover);
+}
+
+.database-card-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.database-card-description {
+  font-size: 0.85rem;
+  color: var(--color-text-sub);
+  margin-bottom: 16px;
+}
+
+.database-card-status {
+  display: inline-block;
+  padding: 4px 12px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  background-color: #eef1ff;
+  border-radius: 999px;
+}
+
+/* 実装済みで、実際のページへ移動できるカテゴリー用のステータス */
+.database-card-status.is-available {
+  color: var(--color-text-on-primary);
+  background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+}
+
+/* ---------- 8. 運営者情報 ---------- */
+.operator-info {
+  background-color: var(--color-card-background);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  padding: 24px;
+  box-shadow: var(--shadow-card);
+  display: inline-block;
+}
+
+.operator-sns-label {
+  font-size: 0.85rem;
+  color: var(--color-text-sub);
+  margin-bottom: 8px;
+}
+
+.operator-sns-link {
+  display: inline-block;
+  font-weight: 700;
+  color: var(--color-primary);
+  transition: color 0.2s ease;
+}
+
+.operator-sns-link:hover {
+  color: var(--color-accent);
+  text-decoration: underline;
+}
+
+/* ---------- 9. フッター ---------- */
+.site-footer {
+  text-align: center;
+  padding: 24px;
+  font-size: 0.85rem;
+  color: var(--color-text-sub);
+}
+
+/* ---------- 10. アニメーション ---------- */
+/* 各セクション：下から少し上がりながらフェードイン */
+.fade-in-section {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in-section.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---------- 11. レスポンシブ対応 ---------- */
+
+/* タブレット：データベースカードを2列に */
+@media (max-width: 900px) {
+  .database-card-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* スマートフォン：ナビゲーションを縦並びのメニューに切り替え */
+@media (max-width: 640px) {
+  .menu-toggle-button {
+    display: flex;
+  }
+
+  .main-navigation {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: var(--color-card-background);
+    border-bottom: 1px solid var(--color-border);
+    box-shadow: var(--shadow-card);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.25s ease;
+  }
+
+  .main-navigation.is-open {
+    max-height: 300px;
+  }
+
+  .nav-list {
+    flex-direction: column;
+    padding: 8px 24px 16px;
+    gap: 4px;
+    /* PCでのピル型の囲みは縦並びには合わないため解除する */
+    background-color: transparent;
+    border: none;
+    border-radius: 0;
+  }
+
+  .nav-link {
+    display: block;
+    padding: 12px 16px;
+    border-radius: var(--radius-button);
+  }
+
+  .hero-section {
+    padding: 48px 16px 24px;
+  }
+
+  .hero-title {
+    font-size: 1.8rem;
+  }
+
+  .hero-description {
+    font-size: 0.9rem;
+  }
+
+  .page-container {
+    padding: 0 16px;
+  }
+
+  .database-card-list {
+    grid-template-columns: 1fr;
+  }
+
+  .news-item {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .update-log-item {
+    flex-direction: column;
+    gap: 2px;
+    padding: 10px 0;
+  }
+}

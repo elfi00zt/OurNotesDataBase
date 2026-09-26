@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OurNotes DataBase</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/schedule.css">
+</head>
+<body>
+
+  <!-- ヘッダー：サイトロゴとナビゲーションメニュー -->
+  <header class="site-header">
+    <div class="header-inner">
+      <p class="site-logo">OurNotes DataBase</p>
+
+      <!-- スマートフォン用のメニュー開閉ボタン -->
+      <button id="menuToggleButton" class="menu-toggle-button" aria-label="メニューを開く" aria-expanded="false">
+        <span class="menu-icon-bar"></span>
+        <span class="menu-icon-bar"></span>
+        <span class="menu-icon-bar"></span>
+      </button>
+
+      <nav id="mainNavigation" class="main-navigation">
+        <ul class="nav-list">
+          <li><a href="#top" class="nav-link">ホーム</a></li>
+          <li><a href="bands.html" class="nav-link">キャラクター</a></li>
+          <li><a href="#" class="nav-link" data-page-name="カード">カード</a></li>
+          <li><a href="songs.html" class="nav-link">楽曲</a></li>
+          <li><a href="events.html" class="nav-link">イベント</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- メインビジュアル：サイトタイトル -->
+    <section class="hero-section fade-in-section">
+      <div class="hero-content">
+        <h1 class="hero-title">OurNotes DataBase</h1>
+        <p class="hero-description">
+          アワーノーツに関するキャラクター・カード・楽曲などの情報を<br>
+          探しやすくまとめたデータベースサイトです。
+        </p>
+      </div>
+    </section>
+
+    <div class="page-container">
+
+      <!-- スケジュールセクション：ガチャ・クエスト・イベントなどの開催期間を週単位で確認できる -->
+      <section class="content-section fade-in-section">
+        <h2 class="section-title">📅 スケジュール</h2>
+
+        <div class="schedule-controls">
+          <div class="schedule-week-nav">
+            <button type="button" id="schedulePrevWeekButton" class="schedule-nav-button" aria-label="前へ">‹</button>
+            <p id="scheduleWeekRangeText" class="schedule-week-range"></p>
+            <button type="button" id="scheduleNextWeekButton" class="schedule-nav-button" aria-label="次へ">›</button>
+          </div>
+
+          <div class="schedule-view-toggle">
+            <button type="button" id="scheduleWeekViewButton" class="schedule-view-button" data-view="week">週</button>
+            <button type="button" id="scheduleMonthViewButton" class="schedule-view-button" data-view="month">月</button>
+          </div>
+
+          <div id="scheduleCategoryFilter" class="schedule-category-filter">
+            <!-- JavaScriptがここにカテゴリーフィルターのチップを生成します -->
+          </div>
+        </div>
+
+        <div class="schedule-grid-wrapper">
+          <div id="scheduleGrid" class="schedule-grid">
+            <!-- JavaScriptがここに週表示のガントチャートを生成します -->
+          </div>
+          <div id="scheduleMonthGrid" class="schedule-month-grid">
+            <!-- JavaScriptがここに月表示のカレンダーを生成します -->
+          </div>
+        </div>
+      </section>
+
+      <!-- お知らせセクション：サイト運営者からユーザーへの情報 -->
+      <section class="content-section fade-in-section">
+        <h2 class="section-title">📢 お知らせ</h2>
+        <ul id="newsList" class="news-list">
+          <!-- JavaScriptがここにお知らせ項目を生成します -->
+        </ul>
+      </section>
+
+      <!-- 更新履歴セクション：サイトやデータベースへの変更記録 -->
+      <section class="content-section fade-in-section">
+        <h2 class="section-title">🔧 更新履歴</h2>
+        <ul id="updateLogList" class="update-log-list">
+          <!-- JavaScriptがここに更新履歴項目を生成します -->
+        </ul>
+      </section>
+
+      <!-- データベースセクション：各カテゴリーへの導線 -->
+      <section class="content-section fade-in-section">
+        <h2 class="section-title">データベース</h2>
+        <div id="databaseCardList" class="database-card-list">
+          <!-- JavaScriptがここにデータベースカードを生成します -->
+        </div>
+      </section>
+
+      <!-- 運営者情報セクション -->
+      <section class="content-section fade-in-section">
+        <h2 class="section-title">運営者情報</h2>
+        <div class="operator-info">
+          <p class="operator-sns-label">SNS</p>
+          <a
+            href="https://x.com/@Bom_Bang_Bom"
+            class="operator-sns-link"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Noir（X）
+          </a>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- フッター -->
+  <footer class="site-footer">
+    <p>非公式のファンサイトです。画像・データの権利は各権利者に帰属します。&copy;BanG Dream! Project &copy;FROMTOKYO &copy;Bushiroad</p>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/schedule.js"></script>
+</body>
+</html>

@@ -1,0 +1,359 @@
+/* =========================================================
+   OurNotes DataBase - schedule.css
+   トップページの「スケジュール」セクション専用のスタイル。
+
+   構成：
+   1. 週送り・カテゴリーフィルター
+   2. 表示切り替え（週／月）
+   3. ガントチャート本体（グリッド・行・見出し）
+   4. スケジュールバー
+   5. 月表示カレンダー
+   6. レスポンシブ対応
+   ========================================================= */
+
+/* ---------- 1. 週送り・カテゴリーフィルター ---------- */
+.schedule-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.schedule-week-nav {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.schedule-nav-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  background-color: var(--color-card-background);
+  border: 1px solid var(--color-border);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.schedule-nav-button:hover {
+  background-color: var(--color-primary);
+  color: var(--color-text-on-primary);
+}
+
+/* これ以上前の期間へ移動できない場合のボタン（サイトの対象期間の開始より前） */
+.schedule-nav-button:disabled {
+  color: var(--color-text-sub);
+  background-color: var(--color-card-background);
+  cursor: not-allowed;
+}
+
+.schedule-nav-button:disabled:hover {
+  color: var(--color-text-sub);
+  background-color: var(--color-card-background);
+}
+
+.schedule-week-range {
+  min-width: 110px;
+  text-align: center;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-text-main);
+}
+
+.schedule-category-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.schedule-category-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--color-text-sub);
+  background-color: var(--color-card-background);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.schedule-category-chip:hover {
+  color: var(--color-primary);
+}
+
+.schedule-category-chip.is-active {
+  color: var(--color-text-on-primary);
+  background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+  border-color: transparent;
+}
+
+.schedule-category-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* ---------- 2. 表示切り替え（週／月） ---------- */
+.schedule-view-toggle {
+  display: inline-flex;
+  padding: 3px;
+  background-color: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+}
+
+.schedule-view-button {
+  padding: 6px 16px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--color-text-sub);
+  background-color: transparent;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.schedule-view-button:hover {
+  color: var(--color-primary);
+}
+
+.schedule-view-button.is-active {
+  color: var(--color-text-on-primary);
+  background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+}
+
+/* ---------- 3. ガントチャート本体（グリッド・行・見出し） ---------- */
+.schedule-grid-wrapper {
+  overflow-x: auto;
+  background-color: var(--color-card-background);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  padding: 16px;
+}
+
+.schedule-grid {
+  min-width: 640px;
+}
+
+.schedule-row {
+  display: grid;
+  grid-template-columns: 140px repeat(7, minmax(70px, 1fr));
+  align-items: center;
+  gap: 4px;
+  min-height: 40px;
+}
+
+.schedule-header-row {
+  padding-bottom: 8px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.schedule-row-label {
+  min-width: 0;
+}
+
+.schedule-day-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 4px 0;
+  border-radius: 10px;
+}
+
+.schedule-day-label {
+  font-size: 0.75rem;
+  color: var(--color-text-sub);
+}
+
+.schedule-day-date {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-text-main);
+}
+
+.schedule-day-cell.is-today {
+  background-color: #eef1ff;
+}
+
+.schedule-day-cell.is-today .schedule-day-date {
+  color: var(--color-primary);
+}
+
+.schedule-category-heading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 0 6px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-text-main);
+}
+
+.schedule-category-heading .schedule-category-dot {
+  width: 10px;
+  height: 10px;
+}
+
+.schedule-empty-message {
+  padding: 24px 0;
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--color-text-sub);
+}
+
+/* ---------- 4. スケジュールバー ---------- */
+.schedule-bar {
+  display: flex;
+  align-items: center;
+  height: 28px;
+  padding: 0 10px;
+  border-radius: 999px;
+  color: var(--color-text-on-primary);
+  font-size: 0.75rem;
+  font-weight: 700;
+  overflow: hidden;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.schedule-bar-title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* イベント由来の項目のみ実際にリンクになっているため、その場合だけホバー演出を付ける */
+a.schedule-bar {
+  cursor: pointer;
+}
+
+a.schedule-bar:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-card-hover);
+}
+
+/* ---------- 5. 月表示カレンダー ---------- */
+.schedule-month-grid {
+  min-width: 560px;
+}
+
+.schedule-month-weekday-row,
+.schedule-month-week-row {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(72px, 1fr));
+  gap: 4px;
+}
+
+.schedule-month-weekday-row {
+  padding-bottom: 8px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.schedule-month-weekday-cell {
+  text-align: center;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--color-text-sub);
+}
+
+.schedule-month-week-row {
+  margin-bottom: 4px;
+}
+
+.schedule-month-day-cell {
+  min-height: 92px;
+  padding: 6px;
+  background-color: var(--color-background);
+  border-radius: 10px;
+}
+
+.schedule-month-day-cell.is-other-month {
+  opacity: 0.4;
+}
+
+.schedule-month-day-cell.is-today {
+  background-color: #eef1ff;
+  box-shadow: inset 0 0 0 2px var(--color-primary);
+}
+
+.schedule-month-day-number {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-text-main);
+}
+
+.schedule-month-day-items {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.schedule-month-item {
+  display: block;
+  padding: 2px 6px;
+  border-radius: 6px;
+  color: var(--color-text-on-primary);
+  font-size: 0.68rem;
+  font-weight: 700;
+  transition: transform 0.15s ease;
+}
+
+a.schedule-month-item:hover {
+  transform: translateX(2px);
+}
+
+.schedule-month-item-title {
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.schedule-month-more-count {
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: var(--color-text-sub);
+}
+
+/* ---------- 6. レスポンシブ対応 ---------- */
+@media (max-width: 640px) {
+  .schedule-controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .schedule-week-nav {
+    justify-content: center;
+  }
+
+  .schedule-view-toggle {
+    align-self: center;
+  }
+
+  .schedule-grid-wrapper {
+    padding: 12px;
+  }
+
+  .schedule-month-day-cell {
+    min-height: 72px;
+  }
+}

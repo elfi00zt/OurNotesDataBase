@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>キャラクター一覧 | OurNotes DataBase</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/characters.css">
+</head>
+<body class="character-pages compact-page-header">
+
+  <!-- ヘッダー：サイトロゴとナビゲーションメニュー -->
+  <header class="site-header">
+    <div class="header-inner">
+      <p class="site-logo">OurNotes DataBase</p>
+
+      <!-- スマートフォン用のメニュー開閉ボタン -->
+      <button id="menuToggleButton" class="menu-toggle-button" aria-label="メニューを開く" aria-expanded="false">
+        <span class="menu-icon-bar"></span>
+        <span class="menu-icon-bar"></span>
+        <span class="menu-icon-bar"></span>
+      </button>
+
+      <nav id="mainNavigation" class="main-navigation">
+        <ul class="nav-list">
+          <li><a href="index.html" class="nav-link">ホーム</a></li>
+          <li><a href="bands.html" class="nav-link">キャラクター</a></li>
+          <li><a href="#" class="nav-link" data-page-name="カード">カード</a></li>
+          <li><a href="songs.html" class="nav-link">楽曲</a></li>
+          <li><a href="events.html" class="nav-link">イベント</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="page-container">
+
+      <!-- バンド一覧へ戻るリンク（常に表示） -->
+      <a href="bands.html" class="back-link">戻る</a>
+
+      <!-- バンドが見つからない場合は、この中身がエラーメッセージに差し替わる -->
+      <div id="characterMainArea">
+
+        <!-- ページ見出し（選択されたバンド名） -->
+        <section class="page-header fade-in-section">
+          <h1 id="selectedBandName" class="page-header-title"></h1>
+          <p id="selectedBandCaption" class="page-header-caption"></p>
+        </section>
+
+        <!-- キャラクター一覧 -->
+        <section class="content-section fade-in-section">
+          <div id="characterList" class="character-grid">
+            <!-- JavaScriptがここにキャラクターカードを生成します -->
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- フッター -->
+  <footer class="site-footer">
+    <p>非公式のファンサイトです。画像・データの権利は各権利者に帰属します。&copy;BanG Dream! Project &copy;FROMTOKYO &copy;Bushiroad</p>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/characters.js"></script>
+</body>
+</html>

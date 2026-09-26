@@ -1,0 +1,274 @@
+/* =========================================================
+   OurNotes DataBase - events.css
+
+   イベント一覧・イベント詳細ページ専用のスタイル。
+   ページ見出し・戻るリンク・画像表示エリア・一覧カードの土台・
+   エラーメッセージ・アクセント付き見出しなど、他ページと共通の
+   部分は characters.css をそのまま利用し、ここではイベント固有の
+   スタイルのみを定義する。
+
+   構成：
+   0. イベント固有のカラー変数
+   1. イベント一覧カード
+   2. タイプ・開催状況バッジ
+   3. イベント詳細（上部）
+   4. キャラクターチップ（登場キャラクター・ボーナス対象キャラクター）
+   5. あらすじ・ボーナスタイプ
+   6. カード・楽曲一覧（ガチャ／配布／イベント楽曲）
+   7. レスポンシブ対応
+   ========================================================= */
+
+/* ---------- 0. イベント固有のカラー変数 ---------- */
+:root {
+  --event-status-ongoing: #22c55e;
+  --event-status-ended: #9ca3af;
+  --event-status-upcoming: var(--color-primary);
+}
+
+/* ---------- 1. イベント一覧カード ---------- */
+/* 楽曲カードよりも横に広く・縦に低い、横長のカードにする */
+.event-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.event-card .card-thumb {
+  aspect-ratio: 2.4 / 1;
+}
+
+.event-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.event-card-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 2px;
+}
+
+.event-card-name {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--color-text-main);
+}
+
+.event-card-period,
+.event-card-characters {
+  font-size: 0.85rem;
+  color: var(--color-text-sub);
+}
+
+.event-card-footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 2px;
+}
+
+/* ---------- 2. タイプ・開催状況バッジ ---------- */
+.event-type-badge {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-text-on-primary);
+  background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+  border-radius: 999px;
+  padding: 3px 10px;
+}
+
+.event-status-badge {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-text-on-primary);
+  border-radius: 999px;
+  padding: 3px 10px;
+}
+
+.event-status-badge.is-ongoing {
+  background-color: var(--event-status-ongoing);
+}
+
+.event-status-badge.is-ended {
+  background-color: var(--event-status-ended);
+}
+
+.event-status-badge.is-upcoming {
+  background-color: var(--event-status-upcoming);
+}
+
+/* ---------- 3. イベント詳細（上部） ---------- */
+.event-detail-hero {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.event-detail-banner .card-thumb {
+  aspect-ratio: 2.4 / 1;
+  margin-bottom: 0;
+}
+
+.event-detail-heading {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.event-detail-name {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--color-text-main);
+}
+
+.event-detail-period {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-text-sub);
+}
+
+/* ---------- 4. キャラクターチップ ---------- */
+.character-chip-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
+  gap: 16px;
+}
+
+.character-chip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  text-align: center;
+  transition: transform 0.2s ease;
+}
+
+.character-chip:hover {
+  transform: translateY(-4px);
+}
+
+.character-chip .card-thumb {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  margin-bottom: 0;
+}
+
+.character-chip-name {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-text-main);
+}
+
+/* ---------- 5. あらすじ ---------- */
+
+.event-story {
+  font-size: 0.95rem;
+  line-height: 1.9;
+  color: var(--color-text-main);
+  background-color: var(--color-card-background);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  padding: 20px;
+  box-shadow: var(--shadow-card);
+}
+
+/* 該当項目が1件も無いセクションで表示する案内文 */
+.event-empty-message {
+  font-size: 0.9rem;
+  color: var(--color-text-sub);
+}
+
+/* ---------- 6. カード・楽曲一覧（ガチャ／配布／イベント楽曲） ---------- */
+.event-card-item-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 16px;
+}
+
+.event-card-item {
+  display: block;
+  background-color: var(--color-card-background);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  padding: 12px;
+  box-shadow: var(--shadow-card);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.event-card-item:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card-hover);
+}
+
+.event-card-item:hover .card-thumb img {
+  transform: scale(1.05);
+}
+
+.event-card-item .card-thumb {
+  aspect-ratio: 1 / 1;
+  margin-bottom: 8px;
+}
+
+/* カードの種類（メンバー／スナップ）を示すバッジ */
+.card-type-badge {
+  display: block;
+  width: fit-content;
+  margin: 0 auto 6px;
+  padding: 2px 10px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--color-text-on-primary);
+  border-radius: 999px;
+}
+
+.card-type-badge.is-member {
+  background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+}
+
+.card-type-badge.is-snap {
+  background-color: #f59e0b;
+}
+
+.event-card-item-name {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-text-main);
+  text-align: center;
+}
+
+/* ---------- 7. レスポンシブ対応 ---------- */
+
+/* タブレット：イベントカードを2列に */
+@media (max-width: 900px) {
+  .event-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* スマートフォン：イベントカード1列 */
+@media (max-width: 640px) {
+  .event-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .event-card .card-thumb,
+  .event-detail-banner .card-thumb {
+    aspect-ratio: 16 / 9;
+  }
+
+  .character-chip-list {
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  }
+
+  .event-card-item-list {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  }
+}

@@ -4,3 +4,6 @@
 # OS junk files
 .DS_Store
 Thumbs.db
+
+# Claude Code local session/tooling files (not part of the site)
+.claude/

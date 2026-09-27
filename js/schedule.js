@@ -216,6 +216,19 @@ function filterEntriesBySelectedCategory(entries) {
   return entries.filter((entry) => entry.category === selectedScheduleCategory);
 }
 
+/**
+ * タップ時の詳細表示（ポップオーバー）で使う情報を、data属性として埋め込むための文字列を返す
+ */
+function buildScheduleEntryDataAttributes(entry) {
+  return [
+    `data-entry-title="${entry.title}"`,
+    `data-entry-category="${entry.category}"`,
+    `data-entry-start="${entry.startDate}"`,
+    `data-entry-end="${entry.endDate}"`,
+    entry.link ? `data-entry-link="${entry.link}"` : "",
+  ].join(" ");
+}
+
 /* ---------- 週表示（ガントチャート）の描画 ---------- */
 
 /**
@@ -283,13 +296,17 @@ function buildScheduleItemRowHtml(entry, weekDates) {
   const barStyle = `grid-column: ${placement.columnStart} / ${placement.columnEnd}; background-color: ${categoryColor};`;
 
   const barContentHtml = `<span class="schedule-bar-title">${entry.title}</span>`;
+  const barAttributes = `style="${barStyle}" title="${entry.title}" ${buildScheduleEntryDataAttributes(entry)}`;
   const barHtml = entry.link
-    ? `<a class="schedule-bar" style="${barStyle}" href="${entry.link}">${barContentHtml}</a>`
-    : `<span class="schedule-bar" style="${barStyle}">${barContentHtml}</span>`;
+    ? `<a class="schedule-bar" ${barAttributes} href="${entry.link}">${barContentHtml}</a>`
+    : `<span class="schedule-bar" ${barAttributes}>${barContentHtml}</span>`;
 
+  // 左端の列には項目名を表示する（スマートフォンでのみ表示。CSS側で切り替える）
   return `
     <div class="schedule-row">
-      <div class="schedule-row-label"></div>
+      <div class="schedule-row-label" ${buildScheduleEntryDataAttributes(entry)}>
+        <span class="schedule-row-title">${entry.title}</span>
+      </div>
       ${barHtml}
     </div>
   `;
@@ -385,9 +402,11 @@ function buildScheduleMonthDayCellHtml(date, monthAnchorDate, allEntries) {
       const itemStyle = `background-color: ${categoryColor};`;
       const itemContentHtml = `<span class="schedule-month-item-title">${entry.title}</span>`;
 
+      const itemAttributes = `style="${itemStyle}" title="${entry.title}" ${buildScheduleEntryDataAttributes(entry)}`;
+
       return entry.link
-        ? `<a class="schedule-month-item" style="${itemStyle}" href="${entry.link}">${itemContentHtml}</a>`
-        : `<span class="schedule-month-item" style="${itemStyle}">${itemContentHtml}</span>`;
+        ? `<a class="schedule-month-item" ${itemAttributes} href="${entry.link}">${itemContentHtml}</a>`
+        : `<span class="schedule-month-item" ${itemAttributes}>${itemContentHtml}</span>`;
     })
     .join("");
 
@@ -470,6 +489,144 @@ function buildScheduleCategoryChipHtml(category, color, label) {
       ${label || category}
     </button>
   `;
+}
+
+/* ---------- タップ時の詳細表示（ポップオーバー） ---------- */
+
+/**
+ * スマートフォンなど、画面が小さい・ホバーできない端末かどうか。
+ * この場合だけ、予定をタップしたときにすぐページ移動せず、
+ * まず予定名の全文と期間をポップオーバーで表示する。
+ */
+const scheduleTapPopoverMediaQuery = window.matchMedia("(max-width: 640px), (hover: none)");
+
+/** 表示中のポップオーバー要素（1つだけ使い回す） */
+let schedulePopoverElement = null;
+
+/**
+ * "YYYY-MM-DD"を「9/25(木)」の形式に変換する
+ */
+function formatSchedulePopoverDate(dateString) {
+  const date = parseScheduleDate(dateString);
+  const weekdayLabel = scheduleDayLabels[(date.getDay() + 6) % 7];
+  return `${date.getMonth() + 1}/${date.getDate()}(${weekdayLabel})`;
+}
+
+/**
+ * 期間の表示テキストを組み立てる（1日だけの予定は日付1つだけにする）
+ */
+function formatSchedulePopoverPeriod(startDate, endDate) {
+  const startText = formatSchedulePopoverDate(startDate);
+  return startDate === endDate ? startText : `${startText} 〜 ${formatSchedulePopoverDate(endDate)}`;
+}
+
+/**
+ * ポップオーバーを閉じる
+ */
+function closeSchedulePopover() {
+  if (!schedulePopoverElement) return;
+  schedulePopoverElement.remove();
+  schedulePopoverElement = null;
+}
+
+/**
+ * タップされた予定の要素の近くに、予定名・カテゴリー・期間（＋詳細ページへのリンク）を表示する
+ * 文字列はtextContentで設定し、HTMLとして解釈されないようにする
+ */
+function openSchedulePopover(entryElement) {
+  closeSchedulePopover();
+
+  const { entryTitle, entryCategory, entryStart, entryEnd, entryLink } = entryElement.dataset;
+  const categoryColor = scheduleCategoryColors[entryCategory] || scheduleCategoryColors["その他"];
+
+  const popoverElement = document.createElement("div");
+  popoverElement.className = "schedule-popover";
+  popoverElement.setAttribute("role", "dialog");
+  popoverElement.innerHTML = `
+    <p class="schedule-popover-category">
+      <span class="schedule-category-dot" style="background-color: ${categoryColor};"></span>
+      <span class="schedule-popover-category-name"></span>
+    </p>
+    <p class="schedule-popover-title"></p>
+    <p class="schedule-popover-period"></p>
+  `;
+  popoverElement.querySelector(".schedule-popover-category-name").textContent = entryCategory;
+  popoverElement.querySelector(".schedule-popover-title").textContent = entryTitle;
+  popoverElement.querySelector(".schedule-popover-period").textContent = formatSchedulePopoverPeriod(
+    entryStart,
+    entryEnd
+  );
+
+  if (entryLink) {
+    const linkElement = document.createElement("a");
+    linkElement.className = "schedule-popover-link";
+    linkElement.href = entryLink;
+    linkElement.textContent = "詳細を見る ›";
+    popoverElement.appendChild(linkElement);
+  }
+
+  document.body.appendChild(popoverElement);
+  schedulePopoverElement = popoverElement;
+  positionSchedulePopover(popoverElement, entryElement);
+}
+
+/**
+ * ポップオーバーを、タップされた要素の下（入りきらなければ上）に配置する
+ * 左右は画面からはみ出さないように調整する
+ */
+function positionSchedulePopover(popoverElement, entryElement) {
+  const viewportMargin = 12;
+  const gapFromEntry = 8;
+  const entryRect = entryElement.getBoundingClientRect();
+  const popoverRect = popoverElement.getBoundingClientRect();
+
+  const maxLeft = window.innerWidth - popoverRect.width - viewportMargin;
+  const left = Math.max(viewportMargin, Math.min(entryRect.left, maxLeft));
+
+  const fitsBelow = entryRect.bottom + gapFromEntry + popoverRect.height <= window.innerHeight - viewportMargin;
+  const top = fitsBelow
+    ? entryRect.bottom + gapFromEntry
+    : Math.max(viewportMargin, entryRect.top - gapFromEntry - popoverRect.height);
+
+  popoverElement.style.left = `${left}px`;
+  popoverElement.style.top = `${top}px`;
+}
+
+/**
+ * 予定のタップでポップオーバーを開き、外側のタップ・スクロール・Escキーで閉じるように設定する
+ * 週表示・月表示の中身は描画のたびに作り直されるため、外側の要素でまとめてクリックを受け取る
+ */
+function setupSchedulePopover() {
+  document.querySelector(".schedule-grid-wrapper").addEventListener("click", (event) => {
+    if (!scheduleTapPopoverMediaQuery.matches) return;
+
+    const entryElement = event.target.closest("[data-entry-title]");
+    if (!entryElement) return;
+
+    event.preventDefault();
+    event.stopPropagation();
+
+    if (schedulePopoverElement && schedulePopoverElement.dataset.sourceTitle === entryElement.dataset.entryTitle) {
+      closeSchedulePopover();
+      return;
+    }
+
+    openSchedulePopover(entryElement);
+    schedulePopoverElement.dataset.sourceTitle = entryElement.dataset.entryTitle;
+  });
+
+  document.addEventListener("click", (event) => {
+    if (schedulePopoverElement && !schedulePopoverElement.contains(event.target)) {
+      closeSchedulePopover();
+    }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") closeSchedulePopover();
+  });
+
+  window.addEventListener("scroll", closeSchedulePopover, { passive: true, capture: true });
+  window.addEventListener("resize", closeSchedulePopover);
 }
 
 /* ---------- 表示モード・週/月送り・全体の描画 ---------- */
@@ -556,6 +713,8 @@ function isScheduleAtMinimum() {
  * 表示モードボタンの選択状態、本体の描画をまとめて行う
  */
 function renderSchedule() {
+  closeSchedulePopover();
+
   document.getElementById("scheduleGrid").hidden = scheduleViewMode !== "week";
   document.getElementById("scheduleMonthGrid").hidden = scheduleViewMode !== "month";
 
@@ -587,6 +746,7 @@ function initializeSchedule() {
   renderScheduleCategoryFilter();
   setupScheduleViewToggle();
   setupScheduleDateNavigation();
+  setupSchedulePopover();
   renderSchedule();
 }
 

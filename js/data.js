@@ -173,7 +173,7 @@ const songs = [
       expert: { level: 25, notes: 768 },
     },
     musicVideoUrl: "https://www.youtube.com/embed/w-Gvclnnfpc?list=RDiFIXi6zzCls",
-    videoUrl: "",
+    videoUrl: "https://www.youtube.com/embed/m83m_I0ARvA",
   },
   {
     id: "song-002",
@@ -323,7 +323,7 @@ const songs = [
       expert: { level: 20, notes: 610 },
     },
     musicVideoUrl: "https://www.youtube.com/embed/ZsvJUh03MwI",
-    videoUrl: "",
+    videoUrl: "https://www.youtube.com/embed/OIFE2OAOflk",
   },
   {
     id: "song-008",
@@ -398,7 +398,7 @@ const songs = [
       expert: { level: 23, notes: 564 },
     },
     musicVideoUrl: "https://www.youtube.com/embed/s3BTDeNKufQ?list=RDs3BTDeNKufQ",
-    videoUrl: "",
+    videoUrl: "https://www.youtube.com/embed/7LYn7--RGMg",
   },
   {
     id: "song-011",
@@ -448,7 +448,7 @@ const songs = [
       expert: { level: 23, notes: 638 },
     },
     musicVideoUrl: "https://www.youtube.com/embed/EEeYU4-dhZk?list=RDEEeYU4-dhZk",
-    videoUrl: "",
+    videoUrl: "https://www.youtube.com/embed/TxHib6e5GDo",
   },
   {
     id: "song-013",
@@ -748,7 +748,7 @@ const songs = [
       expert: { level: 24, notes: 767 },
     },
     musicVideoUrl: "https://www.youtube.com/embed/vL_d8JYXMWA?list=RDOLb0YQJfos0",
-    videoUrl: "",
+    videoUrl: "https://www.youtube.com/embed/pFLhJbrbREM",
   },
   {
     id: "song-025",
@@ -848,7 +848,7 @@ const songs = [
       expert: { level: 21, notes: 456 },
     },
     musicVideoUrl: "https://www.youtube.com/embed/NB3PxWLn9v4?list=RDNB3PxWLn9v4",
-    videoUrl: "",
+    videoUrl: "https://www.youtube.com/embed/Bg2XbgyxYMg",
   },
   {
     id: "song-029",
@@ -873,7 +873,7 @@ const songs = [
       expert: { level: 24, notes: 896 },
     },
     musicVideoUrl: "https://www.youtube.com/embed/WqQPM0dZpXc?list=RDWqQPM0dZpXc",
-    videoUrl: "",
+    videoUrl: "https://www.youtube.com/embed/DtMarTei9Co",
   }, 
   {
     id: "song-030",
@@ -948,7 +948,7 @@ const songs = [
       expert: { level: 25, notes: 802 },
     },
     musicVideoUrl: "https://www.youtube.com/embed/7llj4mh4L-8?list=RD7llj4mh4L-8",
-    videoUrl: "",
+    videoUrl: "https://www.youtube.com/embed/iTI_K_1CfaI",
   },
   {
     id: "song-033",
@@ -1123,7 +1123,7 @@ const songs = [
       expert: { level: 24, notes: 804 },
     },
     musicVideoUrl: "https://www.youtube.com/embed/z1ga6_4K2io?list=RDz1ga6_4K2io",
-    videoUrl: "",
+    videoUrl: "https://www.youtube.com/embed/dhCWmFv0dZ8",
   },
   {
     id: "song-040",
@@ -1801,7 +1801,7 @@ const songs = [
       expert: { level: 23, notes: 693 },
     },
     musicVideoUrl: "https://www.youtube.com/embed/xp6FLDw8d-k?list=RDxp6FLDw8d-k",
-    videoUrl: "",
+    videoUrl: "https://www.youtube.com/embed/7grrAaiMNG0",
   },
   {
     id: "coverSong-007",
@@ -2051,7 +2051,7 @@ const songs = [
       expert: { level: 24, notes: 441 },
     },
     musicVideoUrl: "https://www.youtube.com/embed/uZh2qHvJFTI?list=RDuZh2qHvJFTI",
-    videoUrl: "",
+    videoUrl: "https://www.youtube.com/embed/ueqTuxVtDfw",
   },
   {
     id: "coverSong-017",
@@ -2208,7 +2208,7 @@ const songs = [
     title: "Stellar Stellar",
     titleKana: "すてらすてら",
     tags: ["カバー"],
-    type: "",
+    type: "山吹",
     bandId: "millsage",
     bandName: "millsage",
     image: "images/songs/coverSong-023.webp",
@@ -2220,10 +2220,10 @@ const songs = [
     arranger: "牧野太洋",
     bpm: 178,
     difficulties: {
-      easy: { level: 0, notes: 0 },
-      normal: { level: 0, notes: 0 },
-      hard: { level: 0, notes: 0 },
-      expert: { level: 0, notes: 0 },
+      easy: { level: 7, notes: 0 },
+      normal: { level: 13, notes: 0 },
+      hard: { level: 18, notes: 0 },
+      expert: { level: 25, notes: 0 },
     },
     musicVideoUrl: "https://www.youtube.com/embed/ygfd-2Be0DA?list=RDygfd-2Be0DA",
     videoUrl: "",
@@ -2384,8 +2384,8 @@ const events = [
     name: "アイの奔流AtoZ",
     type: "チャレンジライブ",
     image: "images/events/event-001.webp",
-    startDate: "2026-09-28",
-    endDate: "2026-10-07",
+    startDate: "9999-01-01",
+    endDate: "9999-01-01",
     characters: ["ritsu-minetsuki", "yuno-sengoku", "arare-nakamachi", "miyako-fuji", "nonoka-miyanaga"],
     bonusType: "パワフル",
     bonusCharacters: ["ritsu-minetsuki", "yuno-sengoku", "arare-nakamachi", "miyako-fuji", "nonoka-miyanaga"],
@@ -2428,7 +2428,7 @@ const scheduleItems = [
   { id: "schedule-0007", title: "Stellar Stellar", category: "楽曲追加", startDate: "2026-09-27", endDate: "2026-09-27" },
   { id: "schedule-0008", title: "ファタール", category: "楽曲追加", startDate: "2026-09-28", endDate: "2026-09-28" },
   { id: "schedule-0009", title: "微笑みの爆弾", category: "楽曲追加", startDate: "2026-09-29", endDate: "2026-09-29" },
-  { id: "schedule-0010", title: "ワタシが主役のサイバーナイトガチャ", category: "ガチャ", startDate: "2026-09-28", endDate: "2026-10-07" },
+  //{ id: "schedule-0010", title: "ワタシが主役のサイバーナイトガチャ", category: "ガチャ", startDate: "2026-09-28", endDate: "2026-10-07" },
   { id: "schedule-0011", title: "過去を喰らう", category: "楽曲追加", startDate: "2026-10-03", endDate: "2026-10-03" },
 ];
 
@@ -2721,8 +2721,10 @@ const guides = [
       {
         type: "serialCodeTable",
         codes: [
-          { code: "SAMPLECODE1", expiry: "2026-10-31", reward: "スター×100" },
-          { code: "SAMPLECODE2", expiry: "2026-11-30", reward: "ライブブースト×5" },
+          { code: "924RELEASE", expiry: "2026-10-24", reward: "メンバーEXPx50,000、スナップEXPx50,000" },
+          { code: "Abracadabra", expiry: "2026-10-24", reward: "AveMujicaプリズムx10、コインx20,000" },
+          { code: "READYON924", expiry: "2026-10-24", reward: "プチブーストドリンク×3" },
+          { code: "OURNOTES", expiry: "2026-10-24", reward: "スター×200" },
         ],
       },
     ],

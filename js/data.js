@@ -792,10 +792,10 @@ const songs = [
     arranger: "長谷川大介(SUPA LOVE)",
     bpm: 118,
     difficulties: {
-      easy: { level: 8, notes: 0 },
-      normal: { level: 13, notes: 0 },
-      hard: { level: 19, notes: 0 },
-      expert: { level: 26, notes: 0 },
+      easy: { level: 8, notes: 538 },
+      normal: { level: 13, notes: 884 },
+      hard: { level: 19, notes: 1023 },
+      expert: { level: 26, notes: 1227 },
     },
     musicVideoUrl: "https://www.youtube.com/embed/2O5C0mJx0Fs?list=RD2O5C0mJx0Fs",
     videoUrl: "",
@@ -2665,5 +2665,105 @@ function revealDynamicSection(containerElement) {
 
   requestAnimationFrame(() => {
     renderedSections.forEach((section) => section.classList.add("is-visible"));
+  });
+}
+
+/**
+ * 攻略情報のカテゴリー
+ * key（categoryのid） : 表示用ラベル
+ *
+ * カテゴリーを追加したいときは、この一覧に1行追加するだけでよい
+ * （一覧ページのフィルター選択肢も、この一覧から自動生成される）。
+ */
+const guideCategoryLabels = {
+  beginner: "初心者向け",
+  event: "イベント攻略",
+  info: "お得情報",
+  other: "その他",
+};
+
+/**
+ * 攻略情報（記事）データ
+ * id            : URLパラメータで指定する一意の識別子
+ * title         : 記事タイトル
+ * category      : カテゴリー（guideCategoryLabelsのkeyと対応する）
+ * thumbnail     : 一覧カード・詳細ページ上部で使うサムネイル画像
+ * summary       : 記事の概要（一覧カード・詳細ページ上部で表示）
+ * publishedDate : 公開日（YYYY-MM-DD形式）
+ * updatedDate   : 更新日（YYYY-MM-DD形式）。一覧はこの日付が新しい順に並ぶ
+ * relatedGuides : 関連記事として表示する、他の記事のidの配列
+ * content       : 記事本文。以下のtypeを持つブロックの配列として管理する
+ *
+ *   { type: "heading", text }                      … 大見出し（目次の対象）
+ *   { type: "subheading", text }                    … 小見出し（目次の対象）
+ *   { type: "paragraph", text }                     … 文章（\nで改行、他ページへのリンクを<a>で埋め込み可）
+ *   { type: "image", src, alt }                     … 画像
+ *   { type: "list", items }                         … 箇条書き
+ *   { type: "orderedList", items }                  … 番号付きリスト
+ *   { type: "table", headers, rows }                … 表
+ *   { type: "note", title, text }                   … 注意事項・ポイント表示
+ *   { type: "serialCodeTable", codes }              … シリアルコード表（codesは { code, expiry, reward } の配列。expiryはYYYY-MM-DD形式）
+ *
+ * 記事を追加したいときは、この配列に要素を追加するだけでよい。
+ */
+const guides = [
+  {
+    id: "guide-001",
+    title: "シリアルコード",
+    category: "info",
+    thumbnail: "images/guides/guide-001.png",
+    summary: "シリアルコード一覧を掲載しています。",
+    publishedDate: "2026-09-27",
+    updatedDate: "2026-09-27",
+    relatedGuides: [],
+    content: [
+      { type: "heading", text: "シリアルコード一覧" },
+      {
+        type: "serialCodeTable",
+        codes: [
+          { code: "SAMPLECODE1", expiry: "2026-10-31", reward: "スター×100" },
+          { code: "SAMPLECODE2", expiry: "2026-11-30", reward: "ライブブースト×5" },
+        ],
+      },
+    ],
+  },
+];
+
+/**
+ * idから攻略情報データを取得する（見つからない場合はnull）
+ */
+function getGuideById(guideId) {
+  return guides.find((guide) => guide.id === guideId) || null;
+}
+
+/**
+ * カテゴリーIDに対応する、色分けされたカテゴリーバッジのHTMLを組み立てる
+ * 一覧カード・詳細ページの両方で使う
+ */
+function buildGuideCategoryBadgeHtml(categoryId) {
+  const categoryLabel = guideCategoryLabels[categoryId] || categoryId;
+  return `<span class="guide-category-badge is-${categoryId}">${categoryLabel}</span>`;
+}
+
+/**
+ * "2026-09-20" 形式の日付から、"2026/09/20" という表示用テキストを組み立てる
+ */
+function formatGuideDateText(isoDate) {
+  return isoDate.replace(/-/g, "/");
+}
+
+/**
+ * 攻略情報を更新日が新しい順に並び替える
+ * updatedDateが同じ場合は、公開日が新しい方を先に表示する
+ *
+ * 一覧ページ（並び順）と詳細ページ（前の記事・次の記事の判定）の
+ * 両方で同じ並び順を使うため、共通の関数としてここに定義する。
+ */
+function sortGuidesByLatestUpdate(guideList) {
+  return [...guideList].sort((guideA, guideB) => {
+    if (guideA.updatedDate !== guideB.updatedDate) {
+      return guideA.updatedDate < guideB.updatedDate ? 1 : -1;
+    }
+    return guideA.publishedDate < guideB.publishedDate ? 1 : -1;
   });
 }

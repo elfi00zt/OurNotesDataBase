@@ -3,10 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>キャラクター詳細 | アワーノーツデータベース</title>
+<title>攻略情報詳細 | アワーノーツデータベース</title>
 <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/characters.css">
+<link rel="stylesheet" href="css/guide.css">
 </head>
 <body class="character-pages">
 
@@ -38,12 +39,12 @@
   <main>
     <div class="page-container">
 
-      <!-- キャラクター一覧へ戻るリンク（所属バンドの一覧へ遷移するよう、JavaScriptがhrefを設定します） -->
-      <a href="characters.html" id="backToCharactersLink" class="back-link">戻る</a>
+      <!-- 攻略情報一覧へ戻るリンク -->
+      <a href="guide.html" class="back-link">戻る</a>
 
-      <!-- キャラクター詳細（見つからない場合は、ここがエラーメッセージに差し替わる） -->
-      <div id="characterDetailArea">
-        <!-- JavaScriptがここにキャラクター詳細を生成します -->
+      <!-- 攻略情報詳細（見つからない場合は、ここがエラーメッセージに差し替わる） -->
+      <div id="guideDetailArea">
+        <!-- JavaScriptがここに攻略情報詳細を生成します -->
       </div>
 
     </div>
@@ -56,6 +57,6 @@
 
   <script src="js/data.js"></script>
   <script src="js/app.js"></script>
-  <script src="js/character-detail.js"></script>
+  <script src="js/guide-detail.js"></script>
 </body>
 </html>

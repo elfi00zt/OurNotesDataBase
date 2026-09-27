@@ -1,0 +1,588 @@
+/* =========================================================
+   OurNotes DataBase - guide.css
+
+   攻略情報一覧・攻略情報詳細ページ専用のスタイル。
+   ページ見出し・戻るリンク・画像表示エリア・一覧カードの土台・
+   エラーメッセージ・アクセント付き見出しなど、他ページと共通の
+   部分は characters.css をそのまま利用し、ここでは攻略情報固有の
+   スタイルのみを定義する。
+
+   構成：
+   0. カテゴリー別のカラー変数
+   1. 検索・カテゴリフィルター
+   2. 攻略情報一覧カード
+   3. パンくずリスト
+   4. 詳細ページ上部（バナー・タイトル・概要・日付）
+   5. 目次
+   6. 記事本文（見出し・文章・画像・リスト・表・注意事項）
+   7. 関連記事
+   8. 前の記事・次の記事
+   9. エラー時の「一覧へ戻る」ボタン
+   10. レスポンシブ対応
+   ========================================================= */
+
+/* ---------- 0. カテゴリー別のカラー変数 ---------- */
+:root {
+  --guide-category-beginner: #22c55e;
+  --guide-category-event: #4f6df5;
+  --guide-category-info: #f59e0b;
+  --guide-category-other: #6b7280;
+}
+
+/* ---------- 1. 検索・カテゴリフィルター ---------- */
+.guide-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.guide-search-input {
+  flex: 1;
+  min-width: 220px;
+  padding: 14px 18px;
+  font-size: 1rem;
+  color: var(--color-text-main);
+  background-color: var(--color-card-background);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-button);
+  box-shadow: var(--shadow-card);
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.guide-search-input:focus {
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-card-hover);
+}
+
+.guide-select {
+  padding: 10px 14px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--color-text-main);
+  background-color: var(--color-card-background);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-button);
+  box-shadow: var(--shadow-card);
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+}
+
+.guide-select:focus {
+  border-color: var(--color-primary);
+  outline: none;
+}
+
+.guide-result-count {
+  margin: 0 0 20px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--color-text-sub);
+}
+
+/* ---------- 2. 攻略情報一覧カード ---------- */
+.guide-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.guide-card .card-thumb {
+  aspect-ratio: 16 / 9;
+}
+
+.guide-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.guide-category-badge {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--color-text-on-primary);
+  border-radius: 999px;
+  padding: 3px 10px;
+}
+
+.guide-category-badge.is-beginner { background-color: var(--guide-category-beginner); }
+.guide-category-badge.is-event { background-color: var(--guide-category-event); }
+.guide-category-badge.is-info { background-color: var(--guide-category-info); }
+.guide-category-badge.is-other { background-color: var(--guide-category-other); }
+
+.guide-card-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--color-text-main);
+}
+
+.guide-card-summary {
+  font-size: 0.85rem;
+  color: var(--color-text-sub);
+  /* 概要が長い場合も、カードの高さがそろうよう2行で省略する */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.guide-card-dates {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  font-size: 0.78rem;
+  color: var(--color-text-sub);
+  margin-top: 2px;
+}
+
+/* ---------- 3. パンくずリスト ---------- */
+.guide-breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin: 24px 0 0;
+  font-size: 0.85rem;
+  color: var(--color-text-sub);
+}
+
+.guide-breadcrumb a {
+  color: var(--color-primary);
+  font-weight: 700;
+  transition: color 0.2s ease;
+}
+
+.guide-breadcrumb a:hover {
+  color: var(--color-accent);
+}
+
+.guide-breadcrumb-separator {
+  color: var(--color-text-sub);
+}
+
+.guide-breadcrumb-current {
+  color: var(--color-text-sub);
+  /* 記事タイトルが長い場合でも、パンくずが横に広がりすぎないようにする */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 320px;
+}
+
+/* ---------- 4. 詳細ページ上部 ---------- */
+.guide-detail-hero {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.guide-detail-banner .card-thumb {
+  aspect-ratio: 21 / 3;
+  margin-bottom: 0;
+}
+
+.guide-detail-heading {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.guide-detail-title {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--color-text-main);
+}
+
+.guide-detail-summary {
+  font-size: 0.95rem;
+  color: var(--color-text-sub);
+}
+
+.guide-detail-dates {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-text-sub);
+}
+
+/* ---------- 5. 目次 ---------- */
+.guide-toc {
+  background-color: var(--color-card-background);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  padding: 20px 24px;
+}
+
+.guide-toc-title {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--color-text-main);
+  margin-bottom: 10px;
+}
+
+.guide-toc-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  counter-reset: guide-toc-counter;
+}
+
+.guide-toc-item {
+  list-style: none;
+}
+
+.guide-toc-item.is-level-1 {
+  counter-increment: guide-toc-counter;
+}
+
+.guide-toc-item.is-level-1 > a::before {
+  content: counter(guide-toc-counter) ". ";
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.guide-toc-item.is-level-2 {
+  padding-left: 20px;
+  font-size: 0.9rem;
+}
+
+.guide-toc-item a {
+  color: var(--color-text-main);
+  transition: color 0.2s ease;
+}
+
+.guide-toc-item a:hover {
+  color: var(--color-primary);
+}
+
+/* ---------- 6. 記事本文 ---------- */
+/* ブログ・攻略記事らしい、読みやすさ優先のレイアウトにする
+   （一覧カードのUIとは異なり、最大幅を絞って行間を広めにとる） */
+.guide-article {
+  max-width: 760px;
+  margin: 0 auto;
+  font-size: 1rem;
+  line-height: 1.9;
+  color: var(--color-text-main);
+}
+
+.guide-article > *:not(:last-child) {
+  margin-bottom: 24px;
+}
+
+.guide-content-heading {
+  font-size: 1.3rem;
+  font-weight: 800;
+  padding-top: 8px;
+  border-top: 1px solid var(--color-border);
+  scroll-margin-top: 16px; /* アンカーリンクでジャンプした際、見出しが画面の端に張り付かないようにする */
+}
+
+.guide-article > .guide-content-heading:first-child {
+  border-top: none;
+  padding-top: 0;
+}
+
+.guide-content-subheading {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  scroll-margin-top: 16px;
+}
+
+.guide-content-paragraph {
+  white-space: normal;
+}
+
+.guide-content-paragraph a {
+  color: var(--color-primary);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.guide-content-paragraph a:hover {
+  color: var(--color-accent);
+}
+
+.guide-content-image {
+  position: relative;
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+}
+
+.guide-content-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.guide-content-image-fallback-text {
+  display: none;
+  position: absolute;
+  inset: 0;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  text-align: center;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--color-text-on-primary);
+  min-height: 160px;
+}
+
+.guide-content-image-fallback-text.is-visible {
+  display: flex;
+}
+
+.guide-content-list {
+  padding-left: 1.4em;
+}
+
+.guide-content-list li:not(:last-child) {
+  margin-bottom: 6px;
+}
+
+.guide-content-list--ordered {
+  list-style: decimal;
+}
+
+.guide-table-wrapper {
+  overflow-x: auto;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+}
+
+.guide-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+.guide-table th,
+.guide-table td {
+  padding: 10px 16px;
+  text-align: left;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.guide-table th {
+  background-color: var(--color-background);
+  font-weight: 700;
+  color: var(--color-text-sub);
+}
+
+.guide-table tr:last-child td {
+  border-bottom: none;
+}
+
+/* シリアルコード表 */
+.guide-table td.guide-serial-code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.guide-copy-button {
+  padding: 6px 14px;
+  border: none;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+  color: var(--color-text-on-primary);
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.guide-copy-button:hover {
+  opacity: 0.85;
+}
+
+.guide-copy-button.is-copied {
+  background: var(--color-text-sub);
+}
+
+/* 注意事項・ポイント表示：タイトルの内容によって色を変える */
+.guide-note {
+  border-radius: var(--radius-card);
+  border-left: 4px solid var(--color-primary);
+  background-color: #eef1ff;
+  padding: 16px 20px;
+}
+
+.guide-note-title {
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--color-primary);
+  margin-bottom: 4px;
+}
+
+.guide-note-text {
+  font-size: 0.92rem;
+  line-height: 1.8;
+}
+
+.guide-note.is-warning {
+  border-left-color: #f59e0b;
+  background-color: #fff7ed;
+}
+
+.guide-note.is-warning .guide-note-title {
+  color: #b45309;
+}
+
+.guide-note.is-important {
+  border-left-color: #ef4444;
+  background-color: #fef2f2;
+}
+
+.guide-note.is-important .guide-note-title {
+  color: #b91c1c;
+}
+
+/* ---------- 7. 関連記事 ---------- */
+.guide-related-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+/* ---------- 8. 前の記事・次の記事 ---------- */
+.guide-prev-next-nav {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.guide-prev-next-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: var(--color-card-background);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  padding: 14px 18px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  min-width: 0;
+}
+
+.guide-prev-next-link:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card-hover);
+}
+
+.guide-prev-next-link.is-next {
+  justify-content: flex-end;
+  text-align: right;
+}
+
+.guide-prev-next-arrow {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  flex-shrink: 0;
+}
+
+.guide-prev-next-body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.guide-prev-next-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-text-sub);
+}
+
+.guide-prev-next-text {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--color-text-main);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ---------- 9. エラー時の「一覧へ戻る」ボタン ---------- */
+.guide-back-to-list-button {
+  display: block;
+  width: fit-content;
+  margin: 20px auto 0;
+  padding: 12px 28px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--color-text-on-primary);
+  background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+  border-radius: var(--radius-button);
+  box-shadow: var(--shadow-card);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.guide-back-to-list-button:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-card-hover);
+}
+
+/* ---------- 10. レスポンシブ対応 ---------- */
+
+/* タブレット：攻略情報カードを2列に */
+@media (max-width: 900px) {
+  .guide-grid,
+  .guide-related-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* スマートフォン：攻略情報カード1列、前後の記事も縦積みにする */
+@media (max-width: 640px) {
+  .guide-grid,
+  .guide-related-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .guide-controls {
+    flex-direction: column;
+  }
+
+  .guide-select {
+    width: 100%;
+  }
+
+  .guide-detail-banner .card-thumb {
+    aspect-ratio: 16 / 3;
+  }
+
+  .guide-article {
+    font-size: 0.95rem;
+  }
+
+  .guide-breadcrumb-current {
+    max-width: 180px;
+  }
+
+  .guide-prev-next-nav {
+    grid-template-columns: 1fr;
+  }
+
+  .guide-prev-next-link.is-next {
+    justify-content: flex-start;
+    text-align: left;
+    flex-direction: row-reverse;
+  }
+}

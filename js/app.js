@@ -59,6 +59,7 @@ const databaseCategoryData = [
   { title: "カード", description: "ゲーム内カードの情報をまとめています。", pageName: "カード" },
   { title: "楽曲", description: "ゲーム内に登場する楽曲の情報をまとめています。", pageName: "楽曲", url: "songs.html" },
   { title: "イベント", description: "開催されたイベントの情報をまとめています。", pageName: "イベント", url: "events.html" },
+  { title: "攻略情報", description: "ゲームをより楽しむための攻略・解説記事をまとめています。", pageName: "攻略情報", url: "guide.html" },
 ];
 
 /* ---------- 2. お知らせ・更新履歴・データベースカードの描画 ---------- */
@@ -215,6 +216,8 @@ const activeNavPageMap = {
   "song-detail.html": "songs.html",
   "events.html": "events.html",
   "event-detail.html": "events.html",
+  "guide.html": "guide.html",
+  "guide-detail.html": "guide.html",
 };
 
 /**

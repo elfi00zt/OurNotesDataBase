@@ -17,7 +17,8 @@
    6. 戻るボタンの共通処理
    7. セクションのフェードインアニメーション
    8. 画像の右クリック・ドラッグ保存の防止
-   9. 初期化処理
+   9. ページ読み込み時のローダー
+   10. 初期化処理
    ========================================================= */
 
 /* ---------- 1. データ定義 ---------- */
@@ -323,7 +324,54 @@ function setupImageProtection() {
   });
 }
 
-/* ---------- 9. 初期化処理 ---------- */
+/* ---------- 9. ページ読み込み時のローダー ---------- */
+
+/**
+ * ローダーが見え始めるまでの時間（ミリ秒）。
+ * CSSの page-loader-appear のアニメーション開始の遅れ（0.25s）と合わせる。
+ */
+const PAGE_LOADER_APPEAR_DELAY = 250;
+
+/**
+ * 読み込みが長引いても、この時間（ミリ秒）でローダーを消す
+ */
+const PAGE_LOADER_MAX_DURATION = 3000;
+
+/**
+ * 画像も含めてページの読み込みが終わったら、ローダーを消す。
+ * まだローダーが見え始める前に読み込みが終わった場合は、フェードアウトせず
+ * すぐに取り除くことで、読み込みが短いときはほぼ見えないようにする。
+ */
+function setupPageLoader() {
+  const pageLoader = document.getElementById("pageLoader");
+  if (!pageLoader) return;
+
+  let isLoaderHidden = false;
+
+  const hidePageLoader = () => {
+    if (isLoaderHidden) return;
+    isLoaderHidden = true;
+
+    if (performance.now() < PAGE_LOADER_APPEAR_DELAY) {
+      pageLoader.remove();
+      return;
+    }
+
+    pageLoader.addEventListener("animationend", () => pageLoader.remove(), { once: true });
+    pageLoader.classList.add("is-hidden");
+  };
+
+  if (document.readyState === "complete") {
+    hidePageLoader();
+  } else {
+    window.addEventListener("load", hidePageLoader, { once: true });
+    setTimeout(hidePageLoader, PAGE_LOADER_MAX_DURATION);
+  }
+}
+
+setupPageLoader();
+
+/* ---------- 10. 初期化処理 ---------- */
 
 /**
  * ページの読み込みが完了したら、各機能を初期化する

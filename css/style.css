@@ -498,8 +498,13 @@ img {
     transition: max-height 0.25s ease;
   }
 
+  /* 開いたときは画面の高さ（ヘッダー分を除く）まで広げ、
+     収まらない場合はメニュー内を縦スクロールできるようにする */
   .main-navigation.is-open {
-    max-height: 300px;
+    max-height: calc(100vh - 64px);
+    max-height: calc(100dvh - 64px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
   }
 
   .nav-list {

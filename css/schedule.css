@@ -386,52 +386,7 @@ a.schedule-month-item:hover {
 }
 
 /* ---------- 7. レスポンシブ対応 ---------- */
-/* 週表示の左端の項目名は、スマートフォンでのみ表示する */
-.schedule-row-title {
-  display: none;
-}
-
 @media (max-width: 640px) {
-  /* 週表示：左端の列に項目名を表示し、バーは期間を示す色の帯だけにする。
-     横スクロールしても項目名が見えるよう、左端の列は固定する */
-  .schedule-grid {
-    min-width: 520px;
-  }
-
-  .schedule-row {
-    grid-template-columns: 112px repeat(7, minmax(52px, 1fr));
-  }
-
-  .schedule-row-label {
-    position: sticky;
-    left: 0;
-    z-index: 1;
-    align-self: stretch;
-    display: flex;
-    align-items: center;
-    padding-right: 8px;
-    background-color: var(--color-card-background);
-  }
-
-  .schedule-row-title {
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-    overflow: hidden;
-    font-size: 0.75rem;
-    font-weight: 700;
-    line-height: 1.35;
-    color: var(--color-text-main);
-  }
-
-  .schedule-bar {
-    height: 20px;
-  }
-
-  .schedule-bar-title {
-    display: none;
-  }
-
   .schedule-controls {
     flex-direction: column;
     align-items: stretch;

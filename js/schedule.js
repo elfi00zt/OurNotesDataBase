@@ -301,12 +301,9 @@ function buildScheduleItemRowHtml(entry, weekDates) {
     ? `<a class="schedule-bar" ${barAttributes} href="${entry.link}">${barContentHtml}</a>`
     : `<span class="schedule-bar" ${barAttributes}>${barContentHtml}</span>`;
 
-  // 左端の列には項目名を表示する（スマートフォンでのみ表示。CSS側で切り替える）
   return `
     <div class="schedule-row">
-      <div class="schedule-row-label" ${buildScheduleEntryDataAttributes(entry)}>
-        <span class="schedule-row-title">${entry.title}</span>
-      </div>
+      <div class="schedule-row-label"></div>
       ${barHtml}
     </div>
   `;

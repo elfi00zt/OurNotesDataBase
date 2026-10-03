@@ -20,6 +20,22 @@ function formatMultilineText(text) {
 }
 
 /**
+ * ボーナスタイプ（タイプアイコン＋タイプ名）の行のHTMLを組み立てる
+ * ボーナスタイプが未設定のイベントでは何も表示しない（空文字を返す）
+ */
+function buildEventBonusTypeHtml(bonusType) {
+  if (!bonusType) return "";
+
+  return `
+    <p class="event-detail-bonus-type">
+      ボーナスタイプ：
+      ${buildSongTypeIconHtml(bonusType)}
+      <span>${bonusType}</span>
+    </p>
+  `;
+}
+
+/**
  * イベント詳細を描画する
  */
 function renderEventDetail(event) {
@@ -40,6 +56,7 @@ function renderEventDetail(event) {
         </div>
         <h1 class="event-detail-name">${event.name}</h1>
         <p class="event-detail-period">開催期間：${formatEventPeriodText(event)}</p>
+        ${buildEventBonusTypeHtml(event.bonusType)}
       </div>
     </section>
 

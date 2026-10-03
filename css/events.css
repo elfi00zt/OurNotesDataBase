@@ -134,6 +134,26 @@
   color: var(--color-text-sub);
 }
 
+/* ボーナスタイプ：タイプアイコンとタイプ名を横並びにする */
+.event-detail-bonus-type {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-text-sub);
+}
+
+.event-detail-bonus-type .song-type-icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+.event-detail-bonus-type span {
+  color: var(--color-text-main);
+}
+
 /* ---------- 4. キャラクターチップ ---------- */
 .character-chip-list {
   display: grid;

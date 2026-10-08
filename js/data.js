@@ -1650,6 +1650,31 @@ const songs = [
     musicVideoUrl: "",
     videoUrl: "https://www.youtube.com/embed/SxzuFUfTucg",
   },
+  {
+    id: "song-061",
+    title: "Odd Dice",
+    titleKana: "おっどだいす",
+    tags: ["オリジナル"],
+    type: "",
+    bandId: "millsage",
+    bandName: "millsage",
+    image: "images/songs/song-061.webp",
+    releaseDate: "2026-10-09",
+    sortPriority: 10,
+    vocal: "汐見 蛍",
+    lyricist: "アザミ",
+    composer: "アザミ",
+    arranger: "アザミ",
+    bpm: 0,
+    difficulties: {
+      easy: { level: 0, notes: 0 },
+      normal: { level: 0, notes: 0 },
+      hard: { level: 0, notes: 0 },
+      expert: { level: 0, notes: 0 },
+    },
+    musicVideoUrl: "",
+    videoUrl: "",
+  },
   //
   //カバー楽曲
   //
@@ -1995,10 +2020,10 @@ const songs = [
     arranger: "石倉まろ",
     bpm: 92,
     difficulties: {
-      easy: { level: 5, notes: 0 },
-      normal: { level: 11, notes: 0 },
-      hard: { level: 17, notes: 0 },
-      expert: { level: 22, notes: 0 },
+      easy: { level: 5, notes: 175 },
+      normal: { level: 11, notes: 385 },
+      hard: { level: 17, notes: 483 },
+      expert: { level: 22, notes: 608 },
     },
     musicVideoUrl: "https://www.youtube.com/embed/FZhB4f7wmzk?list=RDFZhB4f7wmzk",
     videoUrl: "",
@@ -2220,10 +2245,10 @@ const songs = [
     arranger: "牧野太洋",
     bpm: 178,
     difficulties: {
-      easy: { level: 7, notes: 0 },
-      normal: { level: 13, notes: 0 },
-      hard: { level: 18, notes: 0 },
-      expert: { level: 25, notes: 0 },
+      easy: { level: 7, notes: 340 },
+      normal: { level: 13, notes: 511 },
+      hard: { level: 18, notes: 672 },
+      expert: { level: 25, notes: 926 },
     },
     musicVideoUrl: "https://www.youtube.com/embed/ygfd-2Be0DA?list=RDygfd-2Be0DA",
     videoUrl: "",
@@ -2360,8 +2385,8 @@ function buildSongTypeIconHtml(type) {
  * name            : イベント名
  * type            : イベント種別（例："対バンライブ"・"チャレンジライブ"・"ミッションライブ"・"箱庭イベント"・"その他"）
  * image           : イベントバナー画像のパス
- * startDate       : 開催開始日（YYYY-MM-DD形式）
- * endDate         : 開催終了日（YYYY-MM-DD形式）
+ * startDate       : 開催開始日時（"YYYY-MM-DD" または "YYYY-MM-DD HH:mm" 形式）。時刻を省略すると0:00開始
+ * endDate         : 開催終了日時（"YYYY-MM-DD" または "YYYY-MM-DD HH:mm" 形式）。時刻を省略すると23:59終了
  * characters      : 登場キャラクターのidの配列（characters配列のidと対応する）
  * bonusType       : ボーナスタイプ（例："パワフル"）
  * bonusCharacters : ボーナス対象キャラクターのidの配列（characters配列のidと対応する）
@@ -2384,8 +2409,8 @@ const events = [
     name: "アイの奔流AtoZ",
     type: "チャレンジライブ",
     image: "images/events/event-001.webp",
-    startDate: "2026-09-30",
-    endDate: "2026-10-08",
+    startDate: "2026-09-30 18:00",
+    endDate: "2026-10-08 20:59",
     characters: ["ritsu-minetsuki", "yuno-sengoku", "arare-nakamachi", "miyako-fuji", "nonoka-miyanaga"],
     bonusType: "紺碧",
     bonusCharacters: ["ritsu-minetsuki", "yuno-sengoku", "arare-nakamachi", "miyako-fuji", "nonoka-miyanaga"],
@@ -2400,7 +2425,30 @@ const events = [
       { cardId: "card-005", image: "images/cards/card-005.webp", name: "峰月 律", type: "member" },
       { cardId: "card-006", image: "images/cards/card-006.webp", name: "律＆都子", type: "snap" }
     ],
-    eventSongs: ["song-060"],
+    eventSongs: ["song-060", "song-049", "coverSong-009"],
+  },
+  {
+    id: "event-002",
+    name: "お願い、サイドスロー",
+    type: "チャレンジライブ",
+    image: "images/events/event-002.webp",
+    startDate: "2026-10-09 15:00",
+    endDate: "2026-10-17 14:59",
+    characters: ["nagi-kotohira", "mahoro-hamasaki", "hotaru-shiomi", "houka-izumi", "natsume-izawa"],
+    bonusType: "紅赤",
+    bonusCharacters: ["nagi-kotohira", "mahoro-hamasaki", "hotaru-shiomi", "houka-izumi", "natsume-izawa"],
+    story: "再始動したmillsage。が、ひとり浮かない顔の凪。<br>去来するのは憧憬と、シューズが床を擦る音。<br>全部全部閉じ込めて、しまっておいたはずなのに。",
+    gachaCards: [
+      { cardId: "card-007", image: "images/cards/card-001.webp", name: "琴平 凪", type: "member" },
+      { cardId: "card-008", image: "images/cards/card-002.webp", name: "伊沢 なつめ", type: "member" },
+      { cardId: "card-009", image: "images/cards/card-003.webp", name: "琴平 凪", type: "snap" },
+      { cardId: "card-010", image: "images/cards/card-004.webp", name: "まほろ＆凪", type: "snap" }
+    ],
+    rewardCards: [
+      { cardId: "card-011", image: "images/cards/card-005.webp", name: "和泉 朋花", type: "member" },
+      { cardId: "card-012", image: "images/cards/card-006.webp", name: "汐見 蛍", type: "snap" }
+    ],
+    eventSongs: ["song-061"],
   },
 ];
 
@@ -2409,8 +2457,8 @@ const events = [
  * id        : 一意の識別子
  * title     : 項目名
  * category  : カテゴリー（"ガチャ"・"クエスト"・"コラボ"・"キャンペーン"・"解禁"・"その他"のいずれか）
- * startDate : 開始日（YYYY-MM-DD形式）
- * endDate   : 終了日（YYYY-MM-DD形式）
+ * startDate : 開始日時（"YYYY-MM-DD" または "YYYY-MM-DD HH:mm" 形式）
+ * endDate   : 終了日時（"YYYY-MM-DD" または "YYYY-MM-DD HH:mm" 形式）
  *
  * イベント一覧（events配列）とは別に管理する。
  * ホーム画面のスケジュールでは、この配列とevents配列を「カテゴリーの1つ」として
@@ -2430,6 +2478,7 @@ const scheduleItems = [
   { id: "schedule-0009", title: "微笑みの爆弾", category: "楽曲追加", startDate: "2026-09-29", endDate: "2026-09-29" },
   { id: "schedule-0010", title: "ワタシが主役のサイバーナイトガチャ", category: "ガチャ", startDate: "2026-09-30", endDate: "2026-10-09" },
   { id: "schedule-0011", title: "過去を喰らう", category: "楽曲追加", startDate: "2026-10-03", endDate: "2026-10-03" },
+  { id: "schedule-0012", title: "差し込む光、始まりのときガチャ", category: "ガチャ", startDate: "2026-10-09 15:00", endDate: "2026-10-18 11:59" },
 ];
 
 /**
@@ -2471,13 +2520,33 @@ const eventStatusModifiers = {
 };
 
 /**
+ * "YYYY-MM-DD" または "YYYY-MM-DD HH:mm" 形式の日時テキストを、日付部分と時刻部分に分ける
+ * 時刻が省略されている場合、timeは空文字になる
+ * 例: "2026-09-30 15:00" → { date: "2026-09-30", time: "15:00" }
+ */
+function splitDateTimeText(dateTimeText) {
+  const [date, time = ""] = dateTimeText.trim().split(/\s+/);
+  return { date, time };
+}
+
+/**
+ * 日時テキストを、ローカルタイムゾーンのDateに変換する
+ * 時刻が省略されている場合は、defaultTime（"HH:mm:ss"形式）の時刻として扱う
+ */
+function parseDateTimeText(dateTimeText, defaultTime) {
+  const { date, time } = splitDateTimeText(dateTimeText);
+  return new Date(`${date}T${time ? `${time}:00` : defaultTime}`);
+}
+
+/**
  * イベントの開催状況を判定する（開催中・終了・開催前）
  * 実行した時点の日時を基準にする
+ * 時刻が省略されている場合は、開始日の0:00〜終了日の23:59:59を開催期間とする
  */
 function getEventStatus(event) {
   const now = new Date();
-  const startDate = new Date(`${event.startDate}T00:00:00`);
-  const endDate = new Date(`${event.endDate}T23:59:59`);
+  const startDate = parseDateTimeText(event.startDate, "00:00:00");
+  const endDate = parseDateTimeText(event.endDate, "23:59:59");
 
   if (now < startDate) return "開催前";
   if (now > endDate) return "終了";
@@ -2485,11 +2554,15 @@ function getEventStatus(event) {
 }
 
 /**
- * "2026-01-01" 〜 "2026-01-10" 形式のstartDate・endDateから、
- * "2026/01/01 ～ 2026/01/10" という表示用の開催期間テキストを組み立てる
+ * startDate・endDateから、表示用の開催期間テキストを組み立てる
+ * 例: "2026-01-01" 〜 "2026-01-10"             → "2026/01/01 ～ 2026/01/10"
+ *     "2026-01-01 15:00" 〜 "2026-01-10 20:59" → "2026/01/01 15:00 ～ 2026/01/10 20:59"
  */
 function formatEventPeriodText(event) {
-  const toDisplayFormat = (isoDate) => isoDate.replace(/-/g, "/");
+  const toDisplayFormat = (dateTimeText) => {
+    const { date, time } = splitDateTimeText(dateTimeText);
+    return time ? `${date.replace(/-/g, "/")} ${time}` : date.replace(/-/g, "/");
+  };
   return `${toDisplayFormat(event.startDate)} ～ ${toDisplayFormat(event.endDate)}`;
 }
 

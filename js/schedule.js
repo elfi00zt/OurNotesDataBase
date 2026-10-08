@@ -37,7 +37,8 @@ let selectedScheduleCategory = "";
  * そのため、データ側の日付は必ずこの関数を通してローカルタイムゾーンにそろえる。
  */
 function parseScheduleDate(dateString) {
-  const [year, month, day] = dateString.split("-").map(Number);
+  // "YYYY-MM-DD HH:mm"形式で時刻が付いている場合も、バーの配置は日付単位なので日付部分だけを使う
+  const [year, month, day] = splitDateTimeText(dateString).date.split("-").map(Number);
   return new Date(year, month - 1, day);
 }
 
@@ -501,20 +502,30 @@ const scheduleTapPopoverMediaQuery = window.matchMedia("(max-width: 640px), (hov
 let schedulePopoverElement = null;
 
 /**
- * "YYYY-MM-DD"を「9/25(木)」の形式に変換する
+ * "YYYY-MM-DD"（または"YYYY-MM-DD HH:mm"）を「9/25(木)」（または「9/25(木) 15:00」）の形式に変換する
  */
 function formatSchedulePopoverDate(dateString) {
   const date = parseScheduleDate(dateString);
   const weekdayLabel = scheduleDayLabels[(date.getDay() + 6) % 7];
-  return `${date.getMonth() + 1}/${date.getDate()}(${weekdayLabel})`;
+  const { time } = splitDateTimeText(dateString);
+  const dateText = `${date.getMonth() + 1}/${date.getDate()}(${weekdayLabel})`;
+  return time ? `${dateText} ${time}` : dateText;
 }
 
 /**
- * 期間の表示テキストを組み立てる（1日だけの予定は日付1つだけにする）
+ * 期間の表示テキストを組み立てる
+ * 開始と終了が同じ場合は1つだけ、同じ日の中で時刻だけが違う場合は終了側を時刻だけにする
+ * 例: "9/25(木)"、"9/25(木) 12:00 〜 20:59"、"9/30(水) 15:00 〜 10/8(木) 20:59"
  */
 function formatSchedulePopoverPeriod(startDate, endDate) {
   const startText = formatSchedulePopoverDate(startDate);
-  return startDate === endDate ? startText : `${startText} 〜 ${formatSchedulePopoverDate(endDate)}`;
+  if (startDate === endDate) return startText;
+
+  const start = splitDateTimeText(startDate);
+  const end = splitDateTimeText(endDate);
+  if (start.date === end.date && end.time) return `${startText} 〜 ${end.time}`;
+
+  return `${startText} 〜 ${formatSchedulePopoverDate(endDate)}`;
 }
 
 /**

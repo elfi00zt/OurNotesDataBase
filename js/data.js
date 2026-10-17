@@ -1498,7 +1498,7 @@ const songs = [
       expert: { level: 28, notes: 1188 },
     },
     musicVideoUrl: "https://www.youtube.com/embed/yLM6PcfD-_Y?list=RDyLM6PcfD-_Y",
-    videoUrl: "",
+    videoUrl: "https://www.youtube.com/embed/b-HgqQlzPRM",
   },
   {
     id: "song-055",
@@ -1665,7 +1665,7 @@ const songs = [
     lyricist: "アザミ",
     composer: "アザミ",
     arranger: "アザミ",
-    bpm: 0,
+    bpm: 165,
     difficulties: {
       easy: { level: 7, notes: 224 },
       normal: { level: 15, notes: 571 },
@@ -1674,6 +1674,31 @@ const songs = [
     },
     musicVideoUrl: "",
     videoUrl: "",
+  },
+  {
+    id: "song-062",
+    title: "神の名を",
+    titleKana: "かみのなを",
+    tags: ["オリジナル"],
+    type: "山吹",
+    bandId: "ave-mujica",
+    bandName: "Ave Mujica",
+    image: "images/songs/song-062.webp",
+    releaseDate: "2026-10-16",
+    sortPriority: 10,
+    vocal: "ドロリス",
+    lyricist: "Diggy-MO’",
+    composer: "Diggy-MO’/hisakuni(SUPA LOVE)",
+    arranger: "Diggy-MO’",
+    bpm: 200,
+    difficulties: {
+      easy: { level: 6, notes: 336 },
+      normal: { level: 11, notes: 448 },
+      hard: { level: 18, notes: 651 },
+      expert: { level: 26, notes: 846 },
+    },
+    musicVideoUrl: "",
+    videoUrl: "https://www.youtube.com/embed/eTse30AV3Ts",
   },
   //
   //カバー楽曲
@@ -1945,13 +1970,13 @@ const songs = [
     arranger: "DjeDje/三村一輝",
     bpm: 144,
     difficulties: {
-      easy: { level: 9, notes: 0 },
-      normal: { level: 14, notes: 0 },
-      hard: { level: 20, notes: 0 },
-      expert: { level: 24, notes: 0 },
+      easy: { level: 9, notes: 271 },
+      normal: { level: 14, notes: 360 },
+      hard: { level: 20, notes: 572 },
+      expert: { level: 24, notes: 802 },
     },
     musicVideoUrl: "",
-    videoUrl: "",
+    videoUrl: "https://www.youtube.com/embed/HQDFPdMyZws",
   },
   {
     id: "coverSong-012",
@@ -1995,13 +2020,13 @@ const songs = [
     arranger: "太田雄大",
     bpm: 132,
     difficulties: {
-      easy: { level: 6, notes: 0 },
-      normal: { level: 13, notes: 0 },
-      hard: { level: 19, notes: 0 },
-      expert: { level: 26, notes: 0 },
+      easy: { level: 6, notes: 163 },
+      normal: { level: 13, notes: 376 },
+      hard: { level: 19, notes: 596  },
+      expert: { level: 26, notes: 772 },
     },
     musicVideoUrl: "https://www.youtube.com/embed/jOopfZgVxek?list=RDjOopfZgVxek",
-    videoUrl: "",
+    videoUrl: "https://www.youtube.com/embed/oh8zsgwKOg8",
   },
   {
     id: "coverSong-014",
@@ -2439,14 +2464,14 @@ const events = [
     bonusCharacters: ["nagi-kotohira", "mahoro-hamasaki", "hotaru-shiomi", "houka-izumi", "natsume-izawa"],
     story: "再始動したmillsage。が、ひとり浮かない顔の凪。<br>去来するのは憧憬と、シューズが床を擦る音。<br>全部全部閉じ込めて、しまっておいたはずなのに。",
     gachaCards: [
-      { cardId: "card-007", image: "images/cards/card-001.webp", name: "琴平 凪", type: "member" },
-      { cardId: "card-008", image: "images/cards/card-002.webp", name: "伊沢 なつめ", type: "member" },
-      { cardId: "card-009", image: "images/cards/card-003.webp", name: "琴平 凪", type: "snap" },
-      { cardId: "card-010", image: "images/cards/card-004.webp", name: "まほろ＆凪", type: "snap" }
+      { cardId: "card-007", image: "images/cards/card-007.webp", name: "琴平 凪", type: "member" },
+      { cardId: "card-008", image: "images/cards/card-008.webp", name: "伊沢 なつめ", type: "member" },
+      { cardId: "card-009", image: "images/cards/card-009.webp", name: "琴平 凪", type: "snap" },
+      { cardId: "card-010", image: "images/cards/card-010.webp", name: "まほろ＆凪", type: "snap" }
     ],
     rewardCards: [
-      { cardId: "card-011", image: "images/cards/card-005.webp", name: "和泉 朋花", type: "member" },
-      { cardId: "card-012", image: "images/cards/card-006.webp", name: "汐見 蛍", type: "snap" }
+      { cardId: "card-011", image: "images/cards/card-011.webp", name: "和泉 朋花", type: "member" },
+      { cardId: "card-012", image: "images/cards/card-012.webp", name: "汐見 蛍", type: "snap" }
     ],
     eventSongs: ["song-061"],
   },
@@ -2479,6 +2504,8 @@ const scheduleItems = [
   { id: "schedule-0010", title: "ワタシが主役のサイバーナイトガチャ", category: "ガチャ", startDate: "2026-09-30", endDate: "2026-10-09" },
   { id: "schedule-0011", title: "過去を喰らう", category: "楽曲追加", startDate: "2026-10-03", endDate: "2026-10-03" },
   { id: "schedule-0012", title: "差し込む光、始まりのときガチャ", category: "ガチャ", startDate: "2026-10-09 15:00", endDate: "2026-10-18 11:59" },
+  { id: "schedule-0013", title: "神の名を", category: "楽曲追加", startDate: "2026-10-16", endDate: "2026-10-16" },
+  { id: "schedule-0014", title: "映画公開記念 Ave Mujicaピックアップガチャ", category: "ガチャ", startDate: "2026-10-16 15:00", endDate: "2026-10-25 23:59" },
 ];
 
 /**

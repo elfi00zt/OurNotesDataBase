@@ -598,7 +598,7 @@ const songs = [
       expert: { level: 26, notes: 1111 },
     },
     musicVideoUrl: "https://www.youtube.com/embed/C_OJtQMU52Y?list=RDV_PDo4_K8OI",
-    videoUrl: "",
+    videoUrl: "https://www.youtube.com/embed/4SlCS8HgW5g",
   },
   {
     id: "song-019",
@@ -798,7 +798,7 @@ const songs = [
       expert: { level: 26, notes: 1227 },
     },
     musicVideoUrl: "https://www.youtube.com/embed/2O5C0mJx0Fs?list=RD2O5C0mJx0Fs",
-    videoUrl: "",
+    videoUrl: "https://www.youtube.com/embed/dg2M88yPcf8",
   },
   {
     id: "song-027",
@@ -1640,7 +1640,7 @@ const songs = [
     lyricist: "ケンモチヒデフミ",
     composer: "ケンモチヒデフミ",
     arranger: "ケンモチヒデフミ/Skye K",
-    bpm: 0,
+    bpm: 153,
     difficulties: {
       easy: { level: 7, notes: 272 },
       normal: { level: 15, notes: 351 },
@@ -1700,6 +1700,31 @@ const songs = [
     musicVideoUrl: "",
     videoUrl: "https://www.youtube.com/embed/eTse30AV3Ts",
   },
+  {
+    id: "song-063",
+    title: "アイライク・ユアライク",
+    titleKana: "あいらいくゆあらいく",
+    tags: ["オリジナル"],
+    type: "山吹",
+    bandId: "dumb-rock",
+    bandName: "一家Dumb Rock!",
+    image: "images/songs/song-063.webp",
+    releaseDate: "2026-10-18",
+    sortPriority: 10,
+    vocal: "須賀 蕾叶/馬橋 心玖",
+    lyricist: "牧野太洋",
+    composer: "牧野太洋",
+    arranger: "牧野太洋",
+    bpm: 0,
+    difficulties: {
+      easy: { level: 7, notes: 188 },
+      normal: { level: 12, notes: 284 },
+      hard: { level: 17, notes: 464 },
+      expert: { level: 25, notes: 589 },
+    },
+    musicVideoUrl: "",
+    videoUrl: "https://www.youtube.com/embed/d0GW18jRpnw",
+  },
   //
   //カバー楽曲
   //
@@ -1745,13 +1770,13 @@ const songs = [
     arranger: "植木建象/神田ジョン(from PENGUIN RESEARCH)",
     bpm: 190,
     difficulties: {
-      easy: { level: 8, notes: 0 },
-      normal: { level: 13, notes: 0 },
-      hard: { level: 20, notes: 0 },
-      expert: { level: 25, notes: 0 },
+      easy: { level: 8, notes: 515 },
+      normal: { level: 13, notes: 539 },
+      hard: { level: 20, notes: 856 },
+      expert: { level: 25, notes: 1100 },
     },
     musicVideoUrl: "https://www.youtube.com/embed/V_PDo4_K8OI?list=RDV_PDo4_K8OI",
-    videoUrl: "",
+    videoUrl: "https://www.youtube.com/embed/uyyQQm5pjhY",
   },
   {
     id: "coverSong-003",
@@ -1795,13 +1820,13 @@ const songs = [
     arranger: "小木岳司",
     bpm: 142,
     difficulties: {
-      easy: { level: 6, notes: 0 },
-      normal: { level: 13, notes: 0 },
-      hard: { level: 18, notes: 0 },
-      expert: { level: 24, notes: 0 },
+      easy: { level: 6, notes: 304 },
+      normal: { level: 13, notes: 451 },
+      hard: { level: 18, notes: 620 },
+      expert: { level: 24, notes: 769 },
     },
     musicVideoUrl: "",
-    videoUrl: "",
+    videoUrl: "https://www.youtube.com/embed/UBv3lfH-ccU",
   },
   {
     id: "coverSong-005",
@@ -1870,13 +1895,13 @@ const songs = [
     arranger: "UYKADO",
     bpm: 200,
     difficulties: {
-      easy: { level: 6, notes: 0 },
-      normal: { level: 12, notes: 0 },
-      hard: { level: 20, notes: 0 },
-      expert: { level: 25, notes: 0 },
+      easy: { level: 6, notes: 375 },
+      normal: { level: 12, notes: 484 },
+      hard: { level: 20, notes: 783 },
+      expert: { level: 25, notes: 920 },
     },
     musicVideoUrl: "https://www.youtube.com/embed/HHxaj24Rx0I?list=RDHHxaj24Rx0I",
-    videoUrl: "",
+    videoUrl: "https://www.youtube.com/embed/QoT3LIOsZUk",
   },
   {
     id: "coverSong-008",
@@ -1895,13 +1920,13 @@ const songs = [
     arranger: "UYKADO",
     bpm: 175,
     difficulties: {
-      easy: { level: 7, notes: 0 },
-      normal: { level: 12, notes: 0 },
-      hard: { level: 17, notes: 0 },
-      expert: { level: 24, notes: 0 },
+      easy: { level: 7, notes: 288 },
+      normal: { level: 12, notes: 455 },
+      hard: { level: 17, notes: 656 },
+      expert: { level: 24, notes: 849 },
     },
     musicVideoUrl: "https://www.youtube.com/embed/NI1cd7_soy8?list=RDNI1cd7_soy8",
-    videoUrl: "",
+    videoUrl: "https://www.youtube.com/embed/0aWeKbcl3-U",
   },
   {
     id: "coverSong-009",
@@ -2145,13 +2170,13 @@ const songs = [
     arranger: "牧野太洋",
     bpm: 93,
     difficulties: {
-      easy: { level: 6, notes: 0 },
-      normal: { level: 11, notes: 0 },
-      hard: { level: 17, notes: 0 },
-      expert: { level: 23, notes: 0 },
+      easy: { level: 6, notes: 324 },
+      normal: { level: 11, notes: 523 },
+      hard: { level: 17, notes: 812 },
+      expert: { level: 23, notes: 928 },
     },
     musicVideoUrl: "https://www.youtube.com/embed/RQ9JDmerqTo?list=RDRQ9JDmerqTo",
-    videoUrl: "",
+    videoUrl: "https://www.youtube.com/embed/tarjfRqfciA",
   },
   {
     id: "coverSong-019",
@@ -2170,13 +2195,13 @@ const songs = [
     arranger: "石倉まろ",
     bpm: 138,
     difficulties: {
-      easy: { level: 5, notes: 0 },
-      normal: { level: 10, notes: 0 },
-      hard: { level: 17, notes: 0 },
-      expert: { level: 23, notes: 0 },
+      easy: { level: 5, notes: 240 },
+      normal: { level: 10, notes: 339 },
+      hard: { level: 17, notes: 639 },
+      expert: { level: 23, notes: 670 },
     },
     musicVideoUrl: "https://www.youtube.com/embed/rmi0j52kraA?list=RDrmi0j52kraA",
-    videoUrl: "",
+    videoUrl: "https://www.youtube.com/embed/GsP1gwnFQ30",
   },
   {
     id: "coverSong-020",
@@ -2195,13 +2220,13 @@ const songs = [
     arranger: "藤井健太郎",
     bpm: 113,
     difficulties: {
-      easy: { level: 5, notes: 0 },
-      normal: { level: 12, notes: 0 },
-      hard: { level: 17, notes: 0 },
-      expert: { level: 23, notes: 0 },
+      easy: { level: 5, notes: 231 },
+      normal: { level: 12, notes: 376 },
+      hard: { level: 17, notes: 579 },
+      expert: { level: 23, notes: 712 },
     },
     musicVideoUrl: "",
-    videoUrl: "",
+    videoUrl: "https://www.youtube.com/embed/IG1o7VmxKQE",
   },
   {
     id: "coverSong-021",
@@ -2320,13 +2345,13 @@ const songs = [
     arranger: "牧野太洋",
     bpm: 130,
     difficulties: {
-      easy: { level: 7, notes: 0 },
-      normal: { level: 12, notes: 0 },
-      hard: { level: 17, notes: 0 },
-      expert: { level: 24, notes: 0 },
+      easy: { level: 7, notes: 243 },
+      normal: { level: 12, notes: 323 },
+      hard: { level: 17, notes: 520 },
+      expert: { level: 24, notes: 701 },
     },
     musicVideoUrl: "https://www.youtube.com/embed/5t1L-lA1cxM?list=RD5t1L-lA1cxM",
-    videoUrl: "",
+    videoUrl: "https://www.youtube.com/embed/qy9cD5YJP0g",
   },
   {
     id: "coverSong-026",
@@ -2351,7 +2376,7 @@ const songs = [
       expert: { level: 25  , notes: 1144 },
     },
     musicVideoUrl: "",
-    videoUrl: "",
+    videoUrl: "https://www.youtube.com/embed/ExH78WqFKt0",
   },
 ];
 
@@ -2473,7 +2498,30 @@ const events = [
       { cardId: "card-011", image: "images/cards/card-011.webp", name: "和泉 朋花", type: "member" },
       { cardId: "card-012", image: "images/cards/card-012.webp", name: "汐見 蛍", type: "snap" }
     ],
-    eventSongs: ["song-061"],
+    eventSongs: ["song-061","song-052","coverSong-013"],
+  },
+  {
+    id: "event-003",
+    name: "Shake Your 魂, Baby!!",
+    type: "チャレンジライブ",
+    image: "images/events/event-003.webp",
+    startDate: "2026-10-18 15:00",
+    endDate: "2026-10-26 14:59",
+    characters: ["yomogi-yakura", "chieri-umezato", "raika-suga", "shizuku-shinomiya", "miku-mahashi"],
+    bonusType: "山吹",
+    bonusCharacters: ["yomogi-yakura", "chieri-umezato", "raika-suga", "shizuku-shinomiya", "miku-mahashi"],
+    story: "好きな色、好きな味、好きなもの。<br>みんな当たり前に答えられることだが、寧月はいつも答えられない。<br>この問いの正解を探すため、寧月は蓬咲にある頼みごとをする。",
+    gachaCards: [
+      { cardId: "card-007", image: "images/cards/card-007.webp", name: "四宮 寧月", type: "member" },
+      { cardId: "card-008", image: "images/cards/card-008.webp", name: "須賀 蕾叶", type: "member" },
+      { cardId: "card-009", image: "images/cards/card-009.webp", name: "四宮 寧月", type: "snap" },
+      { cardId: "card-010", image: "images/cards/card-010.webp", name: "蓬咲＆ちえり＆寧月", type: "snap" }
+    ],
+    rewardCards: [
+      { cardId: "card-011", image: "images/cards/card-011.webp", name: "馬橋 心玖", type: "member" },
+      { cardId: "card-012", image: "images/cards/card-012.webp", name: "梅里 ちえり", type: "snap" }
+    ],
+    eventSongs: ["song-063","song-058","coverSong-025"],
   },
 ];
 
@@ -2506,6 +2554,8 @@ const scheduleItems = [
   { id: "schedule-0012", title: "差し込む光、始まりのときガチャ", category: "ガチャ", startDate: "2026-10-09 15:00", endDate: "2026-10-18 11:59" },
   { id: "schedule-0013", title: "神の名を", category: "楽曲追加", startDate: "2026-10-16", endDate: "2026-10-16" },
   { id: "schedule-0014", title: "映画公開記念 Ave Mujicaピックアップガチャ", category: "ガチャ", startDate: "2026-10-16 15:00", endDate: "2026-10-25 23:59" },
+  { id: "schedule-0015", title: "はじめてを奏でる光彩讃歌ガチャ", category: "ガチャ", startDate: "2026-10-18 15:00", endDate: "2026-10-28 14:59" },
+  { id: "schedule-0016", title: "Ave Mujica 映画公開記念ミッション", category: "キャンペーン", startDate: "2026-10-16 15:00", endDate: "2026-11-19 23:59" },
 ];
 
 /**

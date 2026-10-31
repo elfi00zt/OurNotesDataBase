@@ -2635,16 +2635,16 @@ const events = [
     bonusCharacters: ["anon-chihaya", "soyo-nagasaki", "tomori-takamatsu", "taki-shiina", "rana-kaname", "sakiko-togawa", "kaikari-yahata", "uika-misumi", "nyamu-yutenji", "mutsumi-wakaba"],
     story: "ストーリー無し",
     gachaCards: [
-      { cardId: "card-013", image: "images/cards/card-013.webp", name: "椎名 立希", type: "member" },
-      { cardId: "card-014", image: "images/cards/card-014.webp", name: "ドロリス", type: "member" },
-      { cardId: "card-015", image: "images/cards/card-015.webp", name: "そよ＆愛音", type: "snap" },
-      { cardId: "card-016", image: "images/cards/card-016.webp", name: "海鈴＆睦＆にゃむ", type: "snap" }
+      { cardId: "card-019", image: "images/cards/card-019.webp", name: "椎名 立希", type: "member" },
+      { cardId: "card-020", image: "images/cards/card-020.webp", name: "ドロリス", type: "member" },
+      { cardId: "card-021", image: "images/cards/card-021.webp", name: "そよ＆愛音", type: "snap" },
+      { cardId: "card-022", image: "images/cards/card-022.webp", name: "海鈴＆睦＆にゃむ", type: "snap" }
     ],
     rewardCards: [
-      { cardId: "card-017", image: "images/cards/card-017.webp", name: "要 楽奈", type: "member" },
-      { cardId: "card-018", image: "images/cards/card-018.webp", name: "睦＆初華", type: "snap" }
+      { cardId: "card-023", image: "images/cards/card-023.webp", name: "要 楽奈", type: "member" },
+      { cardId: "card-024", image: "images/cards/card-024.webp", name: "睦＆初華", type: "snap" }
     ],
-    eventSongs: ["coverSong-027","coverSong-028","song-005","song-22"],
+    eventSongs: ["coverSong-027","coverSong-028","song-005","song-022"],
   },
 ];
 

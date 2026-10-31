@@ -573,7 +573,7 @@ const songs = [
       expert: { level: 28, notes: 1269 },
     },
     musicVideoUrl: "https://www.youtube.com/embed/KVsLvO_kvGo?list=RDKVsLvO_kvGo",
-    videoUrl: "",
+    videoUrl: "https://www.youtube.com/embed/fK29lA6G2V8",
   },
   {
     id: "song-018",
@@ -1647,7 +1647,7 @@ const songs = [
       hard: { level: 19, notes: 600 },
       expert: { level: 26, notes: 759 },
     },
-    musicVideoUrl: "",
+    musicVideoUrl: "https://www.youtube.com/embed/c_T1QlWWsOE",
     videoUrl: "https://www.youtube.com/embed/SxzuFUfTucg",
   },
   {
@@ -2403,6 +2403,81 @@ const songs = [
     musicVideoUrl: "",
     videoUrl: "https://www.youtube.com/embed/ExH78WqFKt0",
   },
+  {
+    id: "coverSong-027",
+    title: "ノンブレス・オブリージュ",
+    titleKana: "のんぶれすおぶりーじゅ",
+    tags: ["カバー", "ボーカロイド"],
+    type: "",
+    bandId: "mygo",
+    bandName: "MyGO!!!!!",
+    image: "images/songs/coverSong-027.webp",
+    releaseDate: "2026-10-28",
+    sortPriority: 1100,
+    vocal: "高松 燈",
+    lyricist: "ピノキオピー",
+    composer: "ピノキオピー",
+    arranger: "小木岳司",
+    bpm: 148,
+    difficulties: {
+      easy: { level: 7, notes: 279 },
+      normal: { level: 14, notes: 476 },
+      hard: { level: 20, notes: 720 },
+      expert: { level: 26  , notes: 957 },
+    },
+    musicVideoUrl: "",
+    videoUrl: "https://www.youtube.com/embed/S_1twlTbfOk",
+  },
+  {
+    id: "coverSong-028",
+    title: "怪物",
+    titleKana: "かいぶつ",
+    tags: ["カバー", "アニメ"],
+    type: "紅赤",
+    bandId: "ave-mujica",
+    bandName: "Ave Mujica",
+    image: "images/songs/coverSong-028.webp",
+    releaseDate: "2026-10-28",
+    sortPriority: 1200,
+    vocal: "ドロリス",
+    lyricist: "Ayase",
+    composer: "Ayase",
+    arranger: "Klas Sylvsky",
+    bpm: 170,
+    difficulties: {
+      easy: { level: 7, notes: 295 },
+      normal: { level: 11, notes: 627 },
+      hard: { level: 17, notes: 736 },
+      expert: { level: 25, notes: 936 },
+    },
+    musicVideoUrl: "",
+    videoUrl: "https://www.youtube.com/embed/yo6562J7jb0",
+  },
+  {
+    id: "coverSong-029",
+    title: "Abracadabra",
+    titleKana: "あぶらかだぶら",
+    tags: ["カバー"],
+    type: "",
+    bandId: "ave-mujica",
+    bandName: "Ave Mujica",
+    image: "images/songs/coverSong-029.webp",
+    releaseDate: "2026-10-31",
+    sortPriority: 1100,
+    vocal: "ドロリス",
+    lyricist: "Lady Gaga/Andrew Watt/Henry Russell Walter/Susan Ballion/Steven Severin/John McGeoch/Peter Edward Clarke",
+    composer: "Lady Gaga/Andrew Watt/Henry Russell Walter/Susan Ballion/Steven Severin/John McGeoch/Peter Edward Clarke",
+    arranger: "長谷川大介(SUPA LOVE)",
+    bpm: 126,
+    difficulties: {
+      easy: { level: 0, notes: 0 },
+      normal: { level: 0, notes: 0 },
+      hard: { level: 0, notes: 0 },
+      expert: { level: 0, notes: 0 },
+    },
+    musicVideoUrl: "https://www.youtube.com/embed/_SWjjX0ocPw",
+    videoUrl: "",
+  },
 ];
 
 /**
@@ -2463,7 +2538,7 @@ function buildSongTypeIconHtml(type) {
  * startDate       : 開催開始日時（"YYYY-MM-DD" または "YYYY-MM-DD HH:mm" 形式）。時刻を省略すると0:00開始
  * endDate         : 開催終了日時（"YYYY-MM-DD" または "YYYY-MM-DD HH:mm" 形式）。時刻を省略すると23:59終了
  * characters      : 登場キャラクターのidの配列（characters配列のidと対応する）
- * bonusType       : ボーナスタイプ（例："パワフル"）
+ * bonusType       : ボーナスタイプ（例："紺碧"）。複数ある場合は "山吹, 翡翠, 紺碧" のようにカンマ区切りで書くか、配列で書く
  * bonusCharacters : ボーナス対象キャラクターのidの配列（characters配列のidと対応する）
  * story           : イベントのあらすじ（複数行の場合は改行文字を含めてよい）
  * gachaCards      : 登場カード（ガチャ）の配列。{ cardId, image, name, type } の形。
@@ -2537,16 +2612,39 @@ const events = [
     bonusCharacters: ["yomogi-yakura", "chieri-umezato", "raika-suga", "shizuku-shinomiya", "miku-mahashi"],
     story: "好きな色、好きな味、好きなもの。<br>みんな当たり前に答えられることだが、寧月はいつも答えられない。<br>この問いの正解を探すため、寧月は蓬咲にある頼みごとをする。",
     gachaCards: [
-      { cardId: "card-007", image: "images/cards/card-007.webp", name: "四宮 寧月", type: "member" },
-      { cardId: "card-008", image: "images/cards/card-008.webp", name: "須賀 蕾叶", type: "member" },
-      { cardId: "card-009", image: "images/cards/card-009.webp", name: "四宮 寧月", type: "snap" },
-      { cardId: "card-010", image: "images/cards/card-010.webp", name: "蓬咲＆ちえり＆寧月", type: "snap" }
+      { cardId: "card-013", image: "images/cards/card-013.webp", name: "四宮 寧月", type: "member" },
+      { cardId: "card-014", image: "images/cards/card-014.webp", name: "須賀 蕾叶", type: "member" },
+      { cardId: "card-015", image: "images/cards/card-015.webp", name: "四宮 寧月", type: "snap" },
+      { cardId: "card-016", image: "images/cards/card-016.webp", name: "蓬咲＆ちえり＆寧月", type: "snap" }
     ],
     rewardCards: [
-      { cardId: "card-011", image: "images/cards/card-011.webp", name: "馬橋 心玖", type: "member" },
-      { cardId: "card-012", image: "images/cards/card-012.webp", name: "梅里 ちえり", type: "snap" }
+      { cardId: "card-017", image: "images/cards/card-017.webp", name: "馬橋 心玖", type: "member" },
+      { cardId: "card-018", image: "images/cards/card-018.webp", name: "梅里 ちえり", type: "snap" }
     ],
     eventSongs: ["song-063","song-058","coverSong-025"],
+  },
+  {
+    id: "event-004",
+    name: "A day～HallowweenSnap～",
+    type: "チャレンジライブ",
+    image: "images/events/event-004.webp",
+    startDate: "2026-10-28 12:00",
+    endDate: "2026-11-07 14:59",
+    characters: ["anon-chihaya", "soyo-nagasaki", "tomori-takamatsu", "taki-shiina", "rana-kaname", "sakiko-togawa", "kaikari-yahata", "uika-misumi", "nyamu-yutenji", "mutsumi-wakaba"],
+    bonusType: "山吹, 翡翠, 紺碧",
+    bonusCharacters: ["anon-chihaya", "soyo-nagasaki", "tomori-takamatsu", "taki-shiina", "rana-kaname", "sakiko-togawa", "kaikari-yahata", "uika-misumi", "nyamu-yutenji", "mutsumi-wakaba"],
+    story: "ストーリー無し",
+    gachaCards: [
+      { cardId: "card-013", image: "images/cards/card-013.webp", name: "椎名 立希", type: "member" },
+      { cardId: "card-014", image: "images/cards/card-014.webp", name: "ドロリス", type: "member" },
+      { cardId: "card-015", image: "images/cards/card-015.webp", name: "そよ＆愛音", type: "snap" },
+      { cardId: "card-016", image: "images/cards/card-016.webp", name: "海鈴＆睦＆にゃむ", type: "snap" }
+    ],
+    rewardCards: [
+      { cardId: "card-017", image: "images/cards/card-017.webp", name: "要 楽奈", type: "member" },
+      { cardId: "card-018", image: "images/cards/card-018.webp", name: "睦＆初華", type: "snap" }
+    ],
+    eventSongs: ["coverSong-027","coverSong-028","song-005","song-22"],
   },
 ];
 
@@ -2568,7 +2666,7 @@ const scheduleItems = [
   { id: "schedule-0001", title: "MyGo!!!!!ピックアップガチャ", category: "ガチャ", startDate: "2026-09-24", endDate: "2026-10-08" },
   { id: "schedule-0002", title: "Ave Mujicaピックアップガチャ", category: "ガチャ", startDate: "2026-09-24", endDate: "2026-10-08" },
   { id: "schedule-0003", title: "リリース記念パック販売", category: "キャンペーン", startDate: "2026-09-24", endDate: "2026-10-28" },
-  { id: "schedule-0004", title: "リリース記念シーズンパス", category: "シーズンパス", startDate: "2026-09-24", endDate: "2026-10-28" },
+  { id: "schedule-0004", title: "リリース記念シーズンパス", category: "シーズン", startDate: "2026-09-24", endDate: "2026-10-28" },
   { id: "schedule-0005", title: "ちゅ、多様性。", category: "楽曲追加", startDate: "2026-09-25", endDate: "2026-09-25" },
   { id: "schedule-0006", title: "空に歌えば", category: "楽曲追加", startDate: "2026-09-26", endDate: "2026-09-26" },
   { id: "schedule-0007", title: "Stellar Stellar", category: "楽曲追加", startDate: "2026-09-27", endDate: "2026-09-27" },
@@ -2581,6 +2679,11 @@ const scheduleItems = [
   { id: "schedule-0014", title: "映画公開記念 Ave Mujicaピックアップガチャ", category: "ガチャ", startDate: "2026-10-16 15:00", endDate: "2026-10-25 23:59" },
   { id: "schedule-0015", title: "はじめてを奏でる光彩讃歌ガチャ", category: "ガチャ", startDate: "2026-10-18 15:00", endDate: "2026-10-28 14:59" },
   { id: "schedule-0016", title: "Ave Mujica 映画公開記念ミッション", category: "キャンペーン", startDate: "2026-10-16 15:00", endDate: "2026-11-19 23:59" },
+  { id: "schedule-0017", title: "晦冥のナイトウォーカーズガチャ", category: "ガチャ", startDate: "2026-10-28 00:00", endDate: "2026-11-08 14:59" },
+  { id: "schedule-0018", title: "シーズンミッションパス Season1", category: "シーズン", startDate: "2026-10-28", endDate: "2026-11-28 14:59" },
+  { id: "schedule-0019", title: "撃奏アリーナ Season1", category: "シーズン", startDate: "2026-10-28 00:00", endDate: "2026-11-28 14:59" },
+  { id: "schedule-0020", title: "Abracadabra追加記念ミッション", category: "キャンペーン", startDate: "2026-10-31 15:00", endDate: "2026-12-04 14:59" },
+  { id: "schedule-0021", title: "Abracadabra", category: "楽曲追加", startDate: "2026-10-31", endDate: "2026-10-31" },
 ];
 
 /**
@@ -2590,7 +2693,7 @@ const scheduleItems = [
 const scheduleCategoryColors = {
   イベント: "#4f6df5",
   ガチャ: "#ef4444",
-  シーズンパス: "#3b82f6",
+  シーズン: "#3b82f6",
   誕生日: "#a855f7",
   キャンペーン: "#22c55e",
   楽曲追加: "#f59e0b",

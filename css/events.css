@@ -137,8 +137,9 @@
 /* ボーナスタイプ：タイプアイコンとタイプ名を横並びにする */
 .event-detail-bonus-type {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 6px;
+  gap: 6px 12px;
   font-size: 0.95rem;
   font-weight: 700;
   color: var(--color-text-sub);
@@ -150,7 +151,10 @@
   object-fit: contain;
 }
 
-.event-detail-bonus-type span {
+.event-detail-bonus-type-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
   color: var(--color-text-main);
 }
 

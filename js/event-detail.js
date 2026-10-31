@@ -20,17 +20,41 @@ function formatMultilineText(text) {
 }
 
 /**
+ * bonusTypeを、タイプ名の配列に変換する
+ * 1つだけの文字列（"紺碧"）、区切り文字入りの文字列（"山吹, 翡翠, 紺碧"）、
+ * 配列（["山吹", "翡翠", "紺碧"]）のどの書き方でも受け付ける
+ * 区切り文字は、半角・全角のカンマと読点（、）
+ */
+function getBonusTypeList(bonusType) {
+  if (!bonusType) return [];
+  const typeList = Array.isArray(bonusType) ? bonusType : bonusType.split(/[,，、]/);
+  return typeList.map((type) => type.trim()).filter((type) => type);
+}
+
+/**
  * ボーナスタイプ（タイプアイコン＋タイプ名）の行のHTMLを組み立てる
+ * 複数のタイプがある場合は、タイプごとにアイコン＋タイプ名を横に並べる
  * ボーナスタイプが未設定のイベントでは何も表示しない（空文字を返す）
  */
 function buildEventBonusTypeHtml(bonusType) {
-  if (!bonusType) return "";
+  const typeList = getBonusTypeList(bonusType);
+  if (typeList.length === 0) return "";
+
+  const typeItemsHtml = typeList
+    .map(
+      (type) => `
+        <span class="event-detail-bonus-type-item">
+          ${buildSongTypeIconHtml(type)}
+          <span>${type}</span>
+        </span>
+      `
+    )
+    .join("");
 
   return `
     <p class="event-detail-bonus-type">
       ボーナスタイプ：
-      ${buildSongTypeIconHtml(bonusType)}
-      <span>${bonusType}</span>
+      ${typeItemsHtml}
     </p>
   `;
 }

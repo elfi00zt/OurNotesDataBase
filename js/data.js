@@ -1673,7 +1673,7 @@ const songs = [
       expert: { level: 28, notes: 965 },
     },
     musicVideoUrl: "",
-    videoUrl: "",
+    videoUrl: "https://www.youtube.com/embed/sKpmHwL_pNE",
   },
   {
     id: "song-062",
@@ -1715,7 +1715,7 @@ const songs = [
     lyricist: "牧野太洋",
     composer: "牧野太洋",
     arranger: "牧野太洋",
-    bpm: 0,
+    bpm: 106,
     difficulties: {
       easy: { level: 7, notes: 188 },
       normal: { level: 12, notes: 284 },
@@ -1749,6 +1749,31 @@ const songs = [
     },
     musicVideoUrl: "https://www.youtube.com/embed/_awcveMOhc0",
     videoUrl: "https://www.youtube.com/embed/URIG0EMycas",
+  },
+  {
+    id: "song-065",
+    title: "ふたつの月 ～Deep Into The Forest～",
+    titleKana: "ふたつのつきでぃーぷいんとぅざふぉれすと",
+    tags: ["オリジナル"],
+    type: "紫苑",
+    bandId: "ave-mujica",
+    bandName: "Ave Mujica",
+    image: "images/songs/song-065.webp",
+    releaseDate: "2026-11-08",
+    sortPriority: 10,
+    vocal: "ドロリス",
+    lyricist: "Diggy-MO’",
+    composer: "長谷川大介(SUPA LOVE)",
+    arranger: "長谷川大介(SUPA LOVE)",
+    bpm: 180,
+    difficulties: {
+      easy: { level: 6, notes: 243 },
+      normal: { level: 11, notes: 472 },
+      hard: { level: 18, notes: 676 },
+      expert: { level: 25, notes: 893 },
+    },
+    musicVideoUrl: "https://www.youtube.com/embed/6USzFX8HnSY",
+    videoUrl: "https://www.youtube.com/embed/O0g-E0qnUoM",
   },
   //
   //カバー楽曲
@@ -2671,6 +2696,29 @@ const events = [
     ],
     eventSongs: ["coverSong-027","coverSong-028","song-005","song-022"],
   },
+  {
+    id: "event-005",
+    name: "移ろう月のサルタティオ",
+    type: "チャレンジライブ",
+    image: "images/events/event-005.webp",
+    startDate: "2026-11-08 15:00",
+    endDate: "2026-11-17 14:59",
+    characters: ["sakiko-togawa", "kaikari-yahata", "uika-misumi", "nyamu-yutenji", "mutsumi-wakaba"],
+    bonusType: "紫苑",
+    bonusCharacters: ["sakiko-togawa", "kaikari-yahata", "uika-misumi", "nyamu-yutenji", "mutsumi-wakaba"],
+    story: "Ave Mujica再デビュー後、次なるマスカレードの構想を練る祥子。<br>そこで紡がれるのは、森の古城の姫を巡る物語。<br>彼女の顔は、見る者によって違っていて…",
+    gachaCards: [
+      { cardId: "card-025", image: "images/cards/card-025.webp", name: "モーティス", type: "member" },
+      { cardId: "card-026", image: "images/cards/card-026.webp", name: "アモーリス", type: "member" },
+      { cardId: "card-027", image: "images/cards/card-027.webp", name: "モーティス", type: "snap" },
+      { cardId: "card-028", image: "images/cards/card-028.webp", name: "オブリビオニス", type: "snap" }
+    ],
+    rewardCards: [
+      { cardId: "card-029", image: "images/cards/card-029.webp", name: "ドロリス", type: "member" },
+      { cardId: "card-030", image: "images/cards/card-030.webp", name: "海鈴＆にゃむ", type: "snap" }
+    ],
+    eventSongs: ["song-065", "song-023","coverSong-006"],
+  },
 ];
 
 /**
@@ -2709,6 +2757,7 @@ const scheduleItems = [
   { id: "schedule-0019", title: "撃奏アリーナ Season1", category: "シーズン", startDate: "2026-10-28 00:00", endDate: "2026-11-28 14:59" },
   { id: "schedule-0020", title: "Abracadabra追加記念ミッション", category: "キャンペーン", startDate: "2026-10-31 15:00", endDate: "2026-12-04 14:59" },
   { id: "schedule-0021", title: "Abracadabra", category: "楽曲追加", startDate: "2026-10-31", endDate: "2026-10-31" },
+  { id: "schedule-0022", title: "光降る宮殿のエピソディウムガチャ", category: "ガチャ", startDate: "2026-11-08 15:00", endDate: "2026-11-18 14:59" },
 ];
 
 /**

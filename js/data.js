@@ -548,7 +548,7 @@ const songs = [
       expert: { level: 25, notes: 742 },
     },
     musicVideoUrl: "https://www.youtube.com/embed/MaogbGr8Qhg?list=RDiFIXi6zzCls",
-    videoUrl: "",
+    videoUrl: "https://www.youtube.com/embed/hpvzyxZ8hgM",
   },
   {
     id: "song-017",
@@ -1775,6 +1775,31 @@ const songs = [
     musicVideoUrl: "https://www.youtube.com/embed/6USzFX8HnSY",
     videoUrl: "https://www.youtube.com/embed/O0g-E0qnUoM",
   },
+  {
+    id: "song-066",
+    title: "世点彩",
+    titleKana: "せぴあ",
+    tags: ["オリジナル"],
+    type: "紅赤",
+    bandId: "mygo",
+    bandName: "MyGO!!!!!",
+    image: "images/songs/song-066.webp",
+    releaseDate: "2026-11-11",
+    sortPriority: 10,
+    vocal: "高松 燈",
+    lyricist: "藤原優樹(SUPA LOVE)",
+    composer: "トミタカズキ(SUPA LOVE)",
+    arranger: "トミタカズキ(SUPA LOVE)",
+    bpm: 167,
+    difficulties: {
+      easy: { level: 7, notes: 344 },
+      normal: { level: 13, notes: 492 },
+      hard: { level: 17, notes: 616 },
+      expert: { level: 24, notes: 742 },
+    },
+    musicVideoUrl: "https://www.youtube.com/embed/EyowWigzhIY",
+    videoUrl: "https://www.youtube.com/embed/LOcflQpdoEI",
+  },
   //
   //カバー楽曲
   //
@@ -2275,7 +2300,7 @@ const songs = [
       hard: { level: 17, notes: 579 },
       expert: { level: 23, notes: 712 },
     },
-    musicVideoUrl: "",
+    musicVideoUrl: "https://www.youtube.com/embed/jklgiZWYLlg",
     videoUrl: "https://www.youtube.com/embed/IG1o7VmxKQE",
   },
   {
@@ -2758,6 +2783,8 @@ const scheduleItems = [
   { id: "schedule-0020", title: "Abracadabra追加記念ミッション", category: "キャンペーン", startDate: "2026-10-31 15:00", endDate: "2026-12-04 14:59" },
   { id: "schedule-0021", title: "Abracadabra", category: "楽曲追加", startDate: "2026-10-31", endDate: "2026-10-31" },
   { id: "schedule-0022", title: "光降る宮殿のエピソディウムガチャ", category: "ガチャ", startDate: "2026-11-08 15:00", endDate: "2026-11-18 14:59" },
+  { id: "schedule-0023", title: "夢限大みゅーたいぷ バンド記念日キャンペーン", category: "キャンペーン", startDate: "2026-11-18 00:00", endDate: "2026-11-20 23:59" },
+  { id: "schedule-0024", title: "MyGO!!!!! 9th LIVE開催ミッション", category: "キャンペーン", startDate: "2026-11-14 12:00", endDate: "2026-11-22 20:59" },
 ];
 
 /**

@@ -1795,7 +1795,7 @@ const songs = [
       easy: { level: 7, notes: 344 },
       normal: { level: 13, notes: 492 },
       hard: { level: 17, notes: 616 },
-      expert: { level: 24, notes: 742 },
+      expert: { level: 24, notes: 675 },
     },
     musicVideoUrl: "https://www.youtube.com/embed/EyowWigzhIY",
     videoUrl: "https://www.youtube.com/embed/LOcflQpdoEI",

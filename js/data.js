@@ -1248,7 +1248,7 @@ const songs = [
       expert: { level: 26, notes: 763 },
     },
     musicVideoUrl: "https://www.youtube.com/embed/WFOobNlAr3I?list=RDWFOobNlAr3I",
-    videoUrl: "",
+    videoUrl: "https://www.youtube.com/embed/1iAzICaGJxE",
   },
   {
     id: "song-045",
@@ -1398,7 +1398,7 @@ const songs = [
       expert: { level: 22, notes: 481 },
     },
     musicVideoUrl: "https://www.youtube.com/embed/Ps8vxSKsbOc?list=RDPs8vxSKsbOc",
-    videoUrl: "",
+    videoUrl: "https://www.youtube.com/embed/YOhSyrdNgXw",
   },
   {
     id: "song-051",
@@ -1799,6 +1799,31 @@ const songs = [
     },
     musicVideoUrl: "https://www.youtube.com/embed/EyowWigzhIY",
     videoUrl: "https://www.youtube.com/embed/LOcflQpdoEI",
+  },
+  {
+    id: "song-067",
+    title: "KEEP ON",
+    titleKana: "きーぷおん",
+    tags: ["オリジナル"],
+    type: "山吹",
+    bandId: "yumemita",
+    bandName: "夢限大みゅーたいぷ",
+    image: "images/songs/song-067.webp",
+    releaseDate: "2026-11-18",
+    sortPriority: 10,
+    vocal: "仲町 あられ",
+    lyricist: "q*Left",
+    composer: "Aiobahn +81",
+    arranger: "Aiobahn +81",
+    bpm: 0,
+    difficulties: {
+      easy: { level: 7, notes: 171 },
+      normal: { level: 12, notes: 227 },
+      hard: { level: 16, notes: 360 },
+      expert: { level: 25, notes: 544 },
+    },
+    musicVideoUrl: "",
+    videoUrl: "https://www.youtube.com/embed/3n-juonW4nA",
   },
   //
   //カバー楽曲
@@ -2744,6 +2769,29 @@ const events = [
     ],
     eventSongs: ["song-065", "song-023","coverSong-006"],
   },
+  {
+    id: "event-006",
+    name: "きみはまるくん",
+    type: "チャレンジライブ",
+    image: "images/events/event-006.webp",
+    startDate: "2026-11-18 15:00",
+    endDate: "2026-11-27 14:59",
+    characters: ["ritsu-minetsuki", "yuno-sengoku", "arare-nakamachi", "miyako-fuji", "nonoka-miyanaga"],
+    bonusType: "紺碧",
+    bonusCharacters: ["ritsu-minetsuki", "yuno-sengoku", "arare-nakamachi", "miyako-fuji", "nonoka-miyanaga"],
+    story: "迫る全国ツアーに備え、強化合宿を行うゆめみた。<br>大部屋、カレー、大自然の中で育まれる青春の絆ーーに、<br>思わずトラウマがフラッシュバックする都子。",
+    gachaCards: [
+      { cardId: "card-031", image: "images/cards/card-031.webp", name: "藤 都子", type: "member" },
+      { cardId: "card-032", image: "images/cards/card-032.webp", name: "仲町 あられ", type: "member" },
+      { cardId: "card-033", image: "images/cards/card-033.webp", name: "藤 都子", type: "snap" },
+      { cardId: "card-034", image: "images/cards/card-034.webp", name: "律＆あられ＆ユノ", type: "snap" }
+    ],
+    rewardCards: [
+      { cardId: "card-035", image: "images/cards/card-035.webp", name: "宮永 ののか", type: "member" },
+      { cardId: "card-036", image: "images/cards/card-036.webp", name: "千石 ユノ", type: "snap" }
+    ],
+    eventSongs: ["song-067", "song-038", "coverSong-010"],
+  },
 ];
 
 /**
@@ -2785,6 +2833,7 @@ const scheduleItems = [
   { id: "schedule-0022", title: "光降る宮殿のエピソディウムガチャ", category: "ガチャ", startDate: "2026-11-08 15:00", endDate: "2026-11-18 14:59" },
   { id: "schedule-0023", title: "夢限大みゅーたいぷ バンド記念日キャンペーン", category: "キャンペーン", startDate: "2026-11-18 00:00", endDate: "2026-11-20 23:59" },
   { id: "schedule-0024", title: "MyGO!!!!! 9th LIVE開催ミッション", category: "キャンペーン", startDate: "2026-11-14 12:00", endDate: "2026-11-22 20:59" },
+  { id: "schedule-0025", title: "よい子のための新時代トレーニングガチャ", category: "ガチャ", startDate: "2026-11-18 15:00", endDate: "2026-11-29 14:59" },
 ];
 
 /**
